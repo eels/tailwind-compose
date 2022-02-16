@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.3.0](https://github.com/eels/tailwind-compose/compare/v0.2.0...v0.3.0) - 2022-02-16
+
+### Commits
+
+- docs: update v0.2.0 changelog [`95a38cc`](https://github.com/eels/tailwind-compose/commit/95a38cc2005415be1286d241965d3c1d25c1d980)
+- feat: add recursive functionality to class generation [`0ece450`](https://github.com/eels/tailwind-compose/commit/0ece450e961ffe0ce12acf134c4e9b09ba7eb25a)
+
 ## [v0.2.0](https://github.com/eels/tailwind-compose/compare/v0.1.0...v0.2.0) - 2022-02-16
 
 ### Commits
