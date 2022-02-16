@@ -38,3 +38,5 @@ export interface ConstructOptions<P = Props, A = AttrProps> {
 export type Factory = ComposeFunction & WithAttrs & WithTagAttrs;
 
 export const compose: Factory;
+
+export function withTailwindCompose<P = Props>(classes: Classes<P>, props?: P): string;
