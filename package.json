@@ -1,0 +1,105 @@
+{
+  "name": "tailwind-compose",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Easily abstract and compose your React Tailwind classes",
+  "author": "Liam Howell <liam@liam.codes>",
+  "homepage": "https://github.com/eels/tailwind-compose#readme",
+  "repository": "https://github.com/eels/tailwind-compose",
+  "bugs": "https://github.com/eels/tailwind-compose/issues",
+  "license": "MIT",
+  "typings": "./types/index.d.ts",
+  "sideEffects": false,
+  "main": "./dist/tailwind-compose.cjs",
+  "module": "./dist/tailwind-compose.module.js",
+  "umd:main": "./dist/tailwind-compose.umd.js",
+  "unpkg": "./dist/tailwind-compose.umd.js",
+  "exports": {
+    ".": {
+      "browser": "./dist/tailwind-compose.module.js",
+      "umd": "./dist/tailwind-compose.umd.js",
+      "import": "./dist/tailwind-compose.mjs",
+      "require": "./dist/tailwind-compose.cjs"
+    }
+  },
+  "scripts": {
+    "build": "microbundle --entry ./src/index.ts --raw --no-sourcemap",
+    "changelog": "auto-changelog -b 10 -l 10 -t keepachangelog --hide-credit --sort-commits subject",
+    "clean": "rimraf ./dist",
+    "format": "prettier './{src,test,types}/**/*.{js,ts,tsx}' --check",
+    "format:fix": "yarn format --write",
+    "lint": "eslint './{src,test,types}/**/*.{js,ts,tsx}' --cache",
+    "lint:fix": "yarn lint --fix",
+    "lint:types": "tsc --noEmit",
+    "prepack": "yarn clean && yarn build",
+    "prepare": "husky install",
+    "test": "jest --coverage --passWithNoTests"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "files": [
+    "dist/",
+    "types/index.d.ts",
+    "types/tags.ts",
+    "LICENSE.md",
+    "package.json",
+    "README.md"
+  ],
+  "keywords": [
+    "react",
+    "tailwind"
+  ],
+  "dependencies": {
+    "classcat": "^5.0.3",
+    "html-attributes": "^1.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "svg-attributes": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8.0",
+    "react-dom": ">= 16.8.0",
+    "tailwindcss": ">= 3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@commitlint/cli": "^16.0.1",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^17.0.1",
+    "@types/react": "^17.0.32",
+    "@types/react-dom": "^17.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "auto-changelog": "^2.3.0",
+    "eslint": "^8.1.0",
+    "eslint-config-semistandard": "^16.0.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-compat": "^4.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jest-dom": "^4.0.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-sort-destructure-keys": "^1.4.0",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-standard": "^5.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.3.1",
+    "lint-staged": "^12.0.2",
+    "microbundle": "^0.14.1",
+    "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.4.4"
+  }
+}
