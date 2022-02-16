@@ -9,7 +9,9 @@ export type Attrs<A = AttrProps> = A;
 
 export type Props = ExtendableObject;
 
-export type Classes<P = Props> = (string | ((props: P) => string | false))[];
+export type ClassesEval<P = Props> = (props: P) => string | (string | ClassesEval)[] | false;
+
+export type Classes<P = Props> = (string | ClassesEval<P>)[];
 
 export type Component<P = Props> = ForwardRefExoticComponent<PropsWithoutRef<P>>;
 
