@@ -57,10 +57,6 @@ jobs:
         run: |
           yarn install --prefer-offline
 
-      - name: Test Code
-        run: |
-          yarn test
-
       - name: Bump Package Version & Generate Changelog
         run: |
           yarn version --${{ github.event.inputs.version }}
