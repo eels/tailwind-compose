@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.4.1](https://github.com/eels/tailwind-compose/compare/v0.4.0...v0.4.1) - 2022-08-11
+
+### Commits
+
+- docs: update v0.4.0 changelog [`4b33f45`](https://github.com/eels/tailwind-compose/commit/4b33f45a72698f2e02ac837171e0a44e36b701ed)
+- feat: update readme package size link [`3eac78a`](https://github.com/eels/tailwind-compose/commit/3eac78a49a11686dd887a3c157b8f89aa88ff3c0)
+- fix: fix broken attrs redefine issue [`b779092`](https://github.com/eels/tailwind-compose/commit/b77909284445cb2e952b6dbdd6441880b95ba538)
+
 ## [v0.4.0](https://github.com/eels/tailwind-compose/compare/v0.3.0...v0.4.0) - 2022-08-11
 
 ### Commits
