@@ -8,23 +8,23 @@ const Compose = <P extends Props>(target: Target<P>, classes: ComposerFn<P>) => 
   });
 };
 
+Object.defineProperty(Compose, 'attrs', {
+  value: <P extends Props, A extends Attrs>(attrs: A) => {
+    return (target: Target<P>, classes: ComposerFn<P & A>) => {
+      return construct<P, A>({
+        attrs,
+        classes,
+        target,
+      });
+    };
+  },
+});
+
 const ComposeFactoryProxyInstance = new Proxy(Compose, {
   get(target: typeof Compose, property: string) {
     if (Reflect.has(target, property)) {
       return Reflect.get(target, property);
     }
-
-    Object.defineProperty(target, 'attrs', {
-      value: <P extends Props, A extends Attrs>(attrs: A) => {
-        return (target: Target<P>, classes: ComposerFn<P & A>) => {
-          return construct<P, A>({
-            attrs,
-            classes,
-            target,
-          });
-        };
-      },
-    });
 
     const ComposeTag = <P extends Props>(classes: ComposerFn<P>) => {
       return construct<P, {}>({
