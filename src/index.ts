@@ -1,5 +1,2 @@
-import create from '@src/core/compose';
-
-export { default as withTailwindCompose } from '@src/core/withTailwindCompose';
-
-export const compose = create();
+export { classnames } from '@src/core/classnames';
+export { compose } from '@src/core/compose';

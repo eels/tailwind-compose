@@ -3,23 +3,25 @@ import generateClassesArray from '@src/utils/generateClassesArray';
 import generateDisplayName from '@src/utils/generateDisplayName';
 import isValidProp from '@src/utils/isValidProp';
 import { createElement, forwardRef } from 'react';
-import type { Classes, ConstructOptions, Props, Target } from '@types';
+import type { ClassName, ConstructOptions, Props } from '@types';
 import type { Ref } from 'react';
 
-export default function construct<P = Props>(options: ConstructOptions<P>) {
-  const { attrs, classes, target } = options;
+export default function construct<P extends Props, A>(options: ConstructOptions<P, A>) {
+  const { attrs = {} as A, classes, target } = options;
   const isTargetString = typeof target === 'string';
+  const isTargetObject = typeof target === 'object';
 
   function wrapper() {
-    const name = generateDisplayName(target as Target<Props>);
+    const name = generateDisplayName(target);
 
     function composed(props: P, ref: Ref<Element>) {
-      const constructedProps = Object.assign({}, attrs, props) as Props;
+      const constructedProps = Object.assign<ClassName, A, P>({}, attrs, props);
       const constructedPropsKeys = Object.keys(constructedProps);
       const as = constructedProps.as || target;
-      const hasValidAs = typeof as === 'function' || typeof as === 'string';
-      const element = hasValidAs ? as : target;
-      const classArray = generateClassesArray(classes as Classes<Props>, constructedProps);
+      const hasValidAs = ['function', 'object', 'string'].includes(typeof as);
+      const element = hasValidAs && !isTargetObject ? as : target;
+      const componentClassNames = constructedProps.className;
+      const classArray = generateClassesArray(classes)(constructedProps);
 
       for (const prop of constructedPropsKeys) {
         if (isTargetString && !isValidProp(prop)) {
@@ -27,11 +29,7 @@ export default function construct<P = Props>(options: ConstructOptions<P>) {
         }
       }
 
-      if (constructedProps.className) {
-        delete constructedProps.className;
-      }
-
-      constructedProps.className = cc(classArray);
+      constructedProps.className = cc([...classArray, componentClassNames]);
 
       const propsRefObject = ref ? { ref } : {};
       const propsToForward = Object.assign({}, constructedProps, propsRefObject);

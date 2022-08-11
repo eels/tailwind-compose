@@ -1,56 +1,52 @@
 import construct from '@src/lib/construct';
-import type { AttrProps, Attrs, Classes, Factory, Props, Target } from '@types';
+import type { Attrs, ComposeFactory, ComposerFn, Props, Target } from '@types';
 
-export default function create() {
-  const Compose = <P = Props>(target: Target<P>, classes: Classes<P>) => {
-    return construct({
-      attrs: {},
-      classes: classes,
-      target: target,
+const Compose = <P extends Props>(target: Target<P>, classes: ComposerFn<P>) => {
+  return construct<P, {}>({
+    classes,
+    target,
+  });
+};
+
+const ComposeFactoryProxyInstance = new Proxy(Compose, {
+  get(target: typeof Compose, property: string) {
+    if (Reflect.has(target, property)) {
+      return Reflect.get(target, property);
+    }
+
+    Object.defineProperty(target, 'attrs', {
+      value: <P extends Props, A extends Attrs>(attrs: A) => {
+        return (target: Target<P>, classes: ComposerFn<P & A>) => {
+          return construct<P, A>({
+            attrs,
+            classes,
+            target,
+          });
+        };
+      },
     });
-  };
 
-  Object.defineProperty(Compose, 'attrs', {
-    value: <P = Props, A = AttrProps>(attrs: Attrs) => {
-      return (target: Target<P & A>, classes: Classes<P & A>) => {
-        return construct({
-          attrs: attrs,
-          classes: classes,
-          target: target,
-        });
-      };
-    },
-  });
-
-  const ProxyInstance = new Proxy(Compose, {
-    get(target: typeof Compose, property: string) {
-      if (Reflect.has(target, property)) {
-        return Reflect.get(target, property);
-      }
-
-      const ComposeTag = <P = Props>(classes: Classes<P>) => {
-        return construct({
-          attrs: {},
-          classes: classes,
-          target: property as Target<P>,
-        });
-      };
-
-      Object.defineProperty(ComposeTag, 'attrs', {
-        value: <P = Props, A = AttrProps>(attrs: Attrs) => {
-          return (classes: Classes<P & A>) => {
-            return construct({
-              attrs: attrs,
-              classes: classes,
-              target: property as Target<P & A>,
-            });
-          };
-        },
+    const ComposeTag = <P extends Props>(classes: ComposerFn<P>) => {
+      return construct<P, {}>({
+        classes,
+        target: property as Target<P>,
       });
+    };
 
-      return ComposeTag;
-    },
-  });
+    Object.defineProperty(ComposeTag, 'attrs', {
+      value: <P extends Props, A extends Attrs>(attrs: A) => {
+        return (classes: ComposerFn<P & A>) => {
+          return construct<P, A>({
+            attrs,
+            classes,
+            target: property as Target<P>,
+          });
+        };
+      },
+    });
 
-  return ProxyInstance as Factory;
-}
+    return ComposeTag;
+  },
+});
+
+export const compose = ComposeFactoryProxyInstance as ComposeFactory;

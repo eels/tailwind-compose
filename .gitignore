@@ -41,4 +41,3 @@ yarn.lock
 
 /coverage
 /dist
-/src/styles/tw.dist.css

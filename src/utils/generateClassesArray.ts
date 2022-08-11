@@ -1,18 +1,22 @@
-import type { Classes, Props } from '@types';
+import type { ComposerFn, ConditionTuple } from '@types';
 
-export default function generateClassesArray(classes: Classes, props: Props): (string | false)[] {
-  return classes.reduce((array, name) => {
-    if (typeof name === 'string') {
-      return [...array, name];
-    }
+function conditional<P>(target: string, condition: (props: P) => boolean) {
+  return [target, condition] as ConditionTuple<P>;
+}
 
-    const computed = name(props);
-    const isBooleanOrString = typeof computed === 'string' || typeof computed === 'boolean';
+export default function generateClassesArray<P>(composer: ComposerFn<P>) {
+  return (props: P = {} as P) => {
+    const classes = composer(conditional);
+    const entries = classes.reduce((collection, value) => {
+      const isString = typeof value === 'string';
+      const [target, condition] = !isString ? value : [value, () => false];
 
-    if (isBooleanOrString) {
-      return [...array, computed];
-    }
+      const computedValue = isString ? value : target;
+      const computedCondition = isString ? !!value : condition(props);
 
-    return [...array, ...generateClassesArray(computed, props)];
-  }, [] as (string | false)[]);
+      return computedCondition ? [...collection, computedValue] : collection;
+    }, [] as string[]);
+
+    return entries;
+  };
 }

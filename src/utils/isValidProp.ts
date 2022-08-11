@@ -1,4 +1,4 @@
-import { ATTRIBUTES } from '@src/store/attributes';
+import { ATTRIBUTES } from '@src/lib/attributes';
 
 export default function isValidProp(prop: string) {
   const isDOMAttribute = !!ATTRIBUTES[prop];
