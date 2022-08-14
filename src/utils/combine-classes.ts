@@ -4,7 +4,7 @@ export default function cc(classes: (string | undefined)[]) {
   for (let i = 0; i < classes.length; i++) {
     const item = classes[i];
 
-    if (item && item !== '') {
+    if (item && item.trim() !== '') {
       final += (final && ' ') + item.trim();
     }
   }

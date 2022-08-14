@@ -1,7 +1,7 @@
 import htmlAttributes from 'html-attributes';
 import svgAttributes from 'svg-attributes';
 
-const reactAttributes = {
+export const reactAttributes = {
   autoFocus: true,
   children: true,
   dangerouslySetInnerHTML: true,

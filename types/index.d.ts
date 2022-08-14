@@ -11,7 +11,7 @@ export type ClassName = { className?: string };
 
 export type ConditionTarget = string | string[];
 
-export type Condition<P> = (props?: P) => boolean;
+export type Condition<P> = (props: P) => boolean;
 
 export type Tuple<P> = [ConditionTarget, Condition<P>];
 
