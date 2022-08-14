@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.4.2](https://github.com/eels/tailwind-compose/compare/v0.4.1...v0.4.2) - 2022-08-14
+
+### Commits
+
+- docs: update v0.4.1 changelog [`ad57290`](https://github.com/eels/tailwind-compose/commit/ad572904976f2c6e7bbb3f1fd76bffd32fffef55)
+- feat: allow string array as conditional target value [`c35d0b8`](https://github.com/eels/tailwind-compose/commit/c35d0b8570064d8fa07ada78ffb0db612c1a14be)
+
 ## [v0.4.1](https://github.com/eels/tailwind-compose/compare/v0.4.0...v0.4.1) - 2022-08-11
 
 ### Commits
