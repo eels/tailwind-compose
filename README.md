@@ -10,6 +10,7 @@
   <div>Easily abstract and compose your React Tailwind classes</div>
   <br />
   <a href="https://www.npmjs.com/package/tailwind-compose"><img src="https://img.shields.io/npm/v/tailwind-compose?style=flat-square" /></a>
+  <a href="https://coveralls.io/github/eels/tailwind-compose"><img src="https://img.shields.io/coveralls/github/eels/tailwind-compose?label=Coverage&style=flat-square" /></a>
   <a href="https://github.com/eels/tailwind-compose/actions/workflows/codeql-analysis.yml"><img src="https://img.shields.io/github/workflow/status/eels/tailwind-compose/CodeQL%20Analysis?label=CodeQL&style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/tailwind-compose"><img src="https://img.shields.io/npm/dm/tailwind-compose?label=Downloads&style=flat-square" /></a>
   <a href="https://unpkg.com/tailwind-compose@latest/dist/tailwind-compose.module.js"><img src="https://img.badgesize.io/https:/unpkg.com/tailwind-compose@latest/dist/tailwind-compose.module.js?label=Gzip%20Size&style=flat-square&compression=gzip" /></a>
