@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.4.3](https://github.com/eels/tailwind-compose/compare/v0.4.2...v0.4.3) - 2022-08-14
+
+### Commits
+
+- docs: update v0.4.2 changelog [`cdc1f1e`](https://github.com/eels/tailwind-compose/commit/cdc1f1e7dc85833343edc5403685e1d23e00c516)
+- feat: remove classcat in favour of own implementation [`e179e6b`](https://github.com/eels/tailwind-compose/commit/e179e6bf69702c5bec2751ae6cd63b080acee017)
+
 ## [v0.4.2](https://github.com/eels/tailwind-compose/compare/v0.4.1...v0.4.2) - 2022-08-14
 
 ### Commits
