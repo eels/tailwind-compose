@@ -1,7 +1,7 @@
-import cc from '@src/utils/combineClasses';
-import generateClassesArray from '@src/utils/generateClassesArray';
-import generateDisplayName from '@src/utils/generateDisplayName';
-import isValidProp from '@src/utils/isValidProp';
+import cc from '@src/utils/combine-classes';
+import generateClassesArray from '@src/utils/generate-classes-array';
+import generateDisplayName from '@src/utils/generate-display-name';
+import isValidProp from '@src/utils/is-valid-prop';
 import { createElement, forwardRef } from 'react';
 import type { ClassName, ConstructOptions, Props } from '@types';
 import type { Ref } from 'react';
