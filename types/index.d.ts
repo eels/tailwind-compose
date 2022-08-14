@@ -9,17 +9,21 @@ export type Props = ExtendableObject;
 
 export type ClassName = { className?: string };
 
-export type ConditionTuple<P> = [string, (props: P) => boolean];
+export type ConditionTarget = string | string[];
 
-export type Conditional<P> = (target: string, condition: (props: P) => boolean) => ConditionTuple;
+export type Condition<P> = (props?: P) => boolean;
 
-export type Classes<P extends Props> = (string | ConditionTuple<P>)[];
+export type Tuple<P> = [ConditionTarget, Condition<P>];
 
-export type ComposerFn<P extends Props> = (conditional: Conditional<P>) => Classes<P>;
+export type Conditional<P> = (target: ConditionTarget, condition: Condition<P>) => Tuple<P>;
 
-export type Component<P extends Props> = ForwardRefExoticComponent<PropsWithoutRef<P>>;
+export type Classes<P> = (string | Tuple<P>)[];
 
-export type Target<P extends Props> = string | ComponentType<P> | Component<P>;
+export type ComposerFn<P> = (conditional: Conditional<P>) => Classes<P>;
+
+export type Component<P> = ForwardRefExoticComponent<PropsWithoutRef<P>>;
+
+export type Target<P> = string | ComponentType<P> | Component<P>;
 
 export type Compose = <P extends Props>(target: Target<P>, classes: ComposerFn<P>) => Component<P>;
 
