@@ -1,4 +1,4 @@
-import cc from 'classcat';
+import cc from '@src/utils/combineClasses';
 import generateClassesArray from '@src/utils/generateClassesArray';
 import type { ComposerFn, Props } from '@types';
 

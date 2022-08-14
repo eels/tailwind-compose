@@ -1,4 +1,4 @@
-import cc from 'classcat';
+import cc from '@src/utils/combineClasses';
 import generateClassesArray from '@src/utils/generateClassesArray';
 import generateDisplayName from '@src/utils/generateDisplayName';
 import isValidProp from '@src/utils/isValidProp';
@@ -23,7 +23,9 @@ export default function construct<P extends Props, A>(options: ConstructOptions<
       const componentClassNames = constructedProps.className;
       const classArray = generateClassesArray(classes)(constructedProps);
 
-      for (const prop of constructedPropsKeys) {
+      for (let i = 0; i < constructedPropsKeys.length; i++) {
+        const prop = constructedPropsKeys[i];
+
         if (isTargetString && !isValidProp(prop)) {
           delete constructedProps[prop];
         }
