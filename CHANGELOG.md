@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.0](https://github.com/eels/tailwind-compose/compare/v0.4.3...v0.5.0) - 2022-08-16
+
+### Commits
+
+- docs: update v0.4.3 changelog [`f5a55d1`](https://github.com/eels/tailwind-compose/commit/f5a55d186186c1401cd01622cc93717c5b0bc316)
+- feat: add coveralls badge to readme [`02b3877`](https://github.com/eels/tailwind-compose/commit/02b38772b5d862a558e9ae616ad40ee0f98815cb)
+- feat: add initial set of utility tests [`5dfaf07`](https://github.com/eels/tailwind-compose/commit/5dfaf0719a8d4e661b669732e4badf926687163b)
+- feat: add test + coveralls to workflows [`8be90a1`](https://github.com/eels/tailwind-compose/commit/8be90a1b8c416a303a75981584ccb92c2050f0d5)
+- feat: add tests for core functions [`6a4c417`](https://github.com/eels/tailwind-compose/commit/6a4c4171b9b3c5c2918aed023997a6873ecd26d9)
+- feat: add tests for lib/construct [`b803032`](https://github.com/eels/tailwind-compose/commit/b8030323a67bdc4c2decb7ae47f60af82f087f1b)
+- feat: update eslint config into separate micro-packages [`aeda274`](https://github.com/eels/tailwind-compose/commit/aeda2747427bb3f2636f668547975c9517456e9b)
+- feat: use @swc/jest to speed up jest tests [`8ecaa91`](https://github.com/eels/tailwind-compose/commit/8ecaa91c5e2768324a655289423af902060baed0)
+- refactor: minor project structure changes [`a2746eb`](https://github.com/eels/tailwind-compose/commit/a2746eb1dec92b3d1b5b757a14e38524f588187b)
+- refactor: rename files to kebab case [`4632e61`](https://github.com/eels/tailwind-compose/commit/4632e61b6ec5639d71988c934429f13148175212)
+
 ## [v0.4.3](https://github.com/eels/tailwind-compose/compare/v0.4.2...v0.4.3) - 2022-08-14
 
 ### Commits
