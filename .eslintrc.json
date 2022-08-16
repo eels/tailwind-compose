@@ -1,72 +1,31 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:compat/recommended",
-    "plugin:import/recommended",
-    "plugin:import/typescript",
-    "plugin:jest-dom/recommended",
-    "plugin:react/recommended",
     "standard",
-    "semistandard"
+    "semistandard",
+    "./packages/config/eslint/compat.json",
+    "./packages/config/eslint/import.json",
+    "./packages/config/eslint/jest.json",
+    "./packages/config/eslint/prettier.json",
+    "./packages/config/eslint/react.json",
+    "./packages/config/eslint/sort-destructure-keys.json",
+    "./packages/config/eslint/sort-imports.json",
+    "./packages/config/eslint/sort-keys.json",
+    "./packages/config/eslint/testing-library.json",
+    "./packages/config/eslint/typescript-sort-keys.json",
+    "./packages/config/eslint/typescript.json"
   ],
 
   "env": {
     "browser": true,
-    "es2021": true,
-    "jest": true
-  },
-
-  "parser": "@typescript-eslint/parser",
-
-  "plugins": [
-    "@typescript-eslint",
-    "compat",
-    "import",
-    "jest-dom",
-    "react",
-    "prettier",
-    "sort-destructure-keys",
-    "sort-imports-es6-autofix",
-    "sort-keys-fix"
-  ],
-
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
-    },
-    "react": {
-      "version": "detect"
-    }
+    "es6": true
   },
 
   "rules": {
-    "@typescript-eslint/no-unused-vars": "error",
     "comma-dangle": ["error", "always-multiline"],
-    "import/first": "error",
-    "import/newline-after-import": [
-      "error",
-      {
-        "count": 1
-      }
-    ],
-    "import/no-named-as-default-member": "off",
     "no-unused-vars": "off",
-    "prettier/prettier": "error",
-    "sort-destructure-keys/sort-destructure-keys": [
-      "error",
-      {
-        "caseSensitive": true
-      }
-    ],
-    "sort-imports-es6-autofix/sort-imports-es6": [
-      "error",
-      {
-        "ignoreCase": false,
-        "ignoreMemberSort": false,
-        "memberSyntaxSortOrder": ["none", "all", "single", "multiple"]
-      }
-    ],
-    "sort-keys-fix/sort-keys-fix": "error",
+    "no-use-before-define": "off",
+    "require-await": "error",
     "space-before-function-paren": [
       "error",
       {
@@ -75,11 +34,6 @@
         "named": "never"
       }
     ],
-    "valid-typeof": [
-      "error",
-      {
-        "requireStringLiterals": false
-      }
-    ]
+    "quote-props": ["error", "consistent-as-needed"]
   }
 }

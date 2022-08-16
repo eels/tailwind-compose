@@ -2,7 +2,7 @@ import construct from '@src/lib/construct';
 import type { Attrs, ComposeFactory, ComposerFn, Props, Target } from '@types';
 
 const Compose = <P extends Props>(target: Target<P>, classes: ComposerFn<P>) => {
-  return construct<P, {}>({
+  return construct<P, Record<string, unknown>>({
     classes,
     target,
   });
@@ -27,7 +27,7 @@ const ComposeFactoryProxyInstance = new Proxy(Compose, {
     }
 
     const ComposeTag = <P extends Props>(classes: ComposerFn<P>) => {
-      return construct<P, {}>({
+      return construct<P, Record<string, unknown>>({
         classes,
         target: property as Target<P>,
       });

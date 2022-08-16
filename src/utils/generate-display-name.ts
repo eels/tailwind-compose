@@ -5,7 +5,9 @@ export default function generateDisplayName<P extends Props>(target: Target<P>) 
     return `composed.${target}`;
   }
 
-  const componentName = (<Function>target).name;
+  type NotStringTarget = Exclude<Target<P>, string>;
+
+  const componentName = (<NotStringTarget>target).name;
   const componentStaticName = 'Component';
 
   return `Composed${componentName || componentStaticName}`;
