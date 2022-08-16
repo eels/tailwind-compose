@@ -1,13 +1,14 @@
-import construct from '@src/lib/construct';
 import { compose } from '@src/core/compose';
+import { construct } from '@src/lib/construct';
 
 jest.mock('@src/lib/construct');
 
 describe('core/compose', () => {
   const tags = ['a', 'body', 'div', 'html', 'h1', 'main', 'span'] as const;
+  const mockConstruct = construct as jest.Mock;
 
   beforeEach(() => {
-    (construct as jest.Mock).mockImplementation(() => jest.fn());
+    mockConstruct.mockImplementation(() => jest.fn());
   });
 
   afterEach(() => {
@@ -39,7 +40,7 @@ describe('core/compose', () => {
     const target = 'div';
 
     compose(target, classes);
-    expect(construct).toHaveBeenCalledWith({ classes, target });
+    expect(mockConstruct).toHaveBeenCalledWith({ classes, target });
   });
 
   it('should call `construct` with the appropriate options (base `attrs`)', () => {
@@ -48,7 +49,7 @@ describe('core/compose', () => {
     const target = 'div';
 
     compose.attrs(attrs)(target, classes);
-    expect(construct).toHaveBeenCalledWith({ attrs, classes, target });
+    expect(mockConstruct).toHaveBeenCalledWith({ attrs, classes, target });
   });
 
   it('should call `construct` with the appropriate options (dynamic property)', () => {
@@ -56,7 +57,7 @@ describe('core/compose', () => {
     const target = 'div';
 
     compose.div(classes);
-    expect(construct).toHaveBeenCalledWith({ classes, target });
+    expect(mockConstruct).toHaveBeenCalledWith({ classes, target });
   });
 
   it('should call `construct` with the appropriate options (dynamic property `attrs`)', () => {
@@ -65,6 +66,6 @@ describe('core/compose', () => {
     const target = 'div';
 
     compose.div.attrs(attrs)(classes);
-    expect(construct).toHaveBeenCalledWith({ attrs, classes, target });
+    expect(mockConstruct).toHaveBeenCalledWith({ attrs, classes, target });
   });
 });

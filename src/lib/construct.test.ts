@@ -1,4 +1,4 @@
-import construct from '@src/lib/construct';
+import { construct } from '@src/lib/construct';
 import { createElement, createRef, useState } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import type { ConstructOptions, ExtendableObject } from '@types';

@@ -1,4 +1,4 @@
-import generateClassesArray, { conditional } from './generate-classes-array';
+import { conditional, generateClassesArray } from '@src/utilities/generate-classes-array';
 
 describe('utils/conditional', () => {
   it('should return a tuple', () => {

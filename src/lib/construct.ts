@@ -1,12 +1,12 @@
-import cc from '@src/utils/combine-classes';
-import generateClassesArray from '@src/utils/generate-classes-array';
-import generateDisplayName from '@src/utils/generate-display-name';
-import isValidProp from '@src/utils/is-valid-prop';
+import { cc } from '@src/utilities/combine-classes';
 import { createElement, forwardRef } from 'react';
+import { generateClassesArray } from '@src/utilities/generate-classes-array';
+import { generateDisplayName } from '@src/utilities/generate-display-name';
+import { isValidProp } from '@src/utilities/is-valid-prop';
 import type { ClassName, ConstructOptions, Props } from '@types';
 import type { Ref } from 'react';
 
-export default function construct<P extends Props, A>(options: ConstructOptions<P, A>) {
+export function construct<P extends Props, A>(options: ConstructOptions<P, A>) {
   const { attrs = {} as A, classes, target } = options;
   const isTargetString = typeof target === 'string';
   const isTargetObject = typeof target === 'object';

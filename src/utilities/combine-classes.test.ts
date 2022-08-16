@@ -1,4 +1,4 @@
-import cc from './combine-classes';
+import { cc } from '@src/utilities/combine-classes';
 
 describe('utils/cc', () => {
   it('should combine a string array', () => {

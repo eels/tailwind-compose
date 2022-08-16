@@ -4,7 +4,7 @@ export function conditional<P>(target: ConditionTarget, condition: Condition<P>)
   return [target, condition] as Tuple<P>;
 }
 
-export default function generateClassesArray<P>(composer: ComposerFn<P>) {
+export function generateClassesArray<P>(composer: ComposerFn<P>) {
   return (props: P = {} as P) => {
     const classes = composer(conditional);
     const entries = classes.reduce<string[]>((collection, value) => {

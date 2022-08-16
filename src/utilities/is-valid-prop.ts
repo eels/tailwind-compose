@@ -1,6 +1,6 @@
 import { ATTRIBUTES } from '@src/lib/attributes';
 
-export default function isValidProp(prop: string) {
+export function isValidProp(prop: string) {
   const isDOMAttribute = !!ATTRIBUTES[prop];
   const isAriaDataEventProp = /^(([Aa][Rr][Ii][Aa]|[Dd][Aa][Tt][Aa])-.+)|(on[A-Z])/.test(prop);
 

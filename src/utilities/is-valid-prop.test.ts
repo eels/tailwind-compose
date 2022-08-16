@@ -1,6 +1,6 @@
 import htmlAttributes from 'html-attributes';
-import isValidProp from '@src/utils/is-valid-prop';
 import svgAttributes from 'svg-attributes';
+import { isValidProp } from '@src/utilities/is-valid-prop';
 import { reactAttributes } from '@src/lib/attributes';
 
 describe('utils/isValidProp', () => {

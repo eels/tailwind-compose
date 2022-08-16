@@ -1,14 +1,17 @@
-import cc from '@src/utils/combine-classes';
-import generateClassesArray from '@src/utils/generate-classes-array';
+import { cc } from '@src/utilities/combine-classes';
 import { classnames } from '@src/core/classnames';
+import { generateClassesArray } from '@src/utilities/generate-classes-array';
 
-jest.mock('@src/utils/combine-classes');
-jest.mock('@src/utils/generate-classes-array');
+jest.mock('@src/utilities/combine-classes');
+jest.mock('@src/utilities/generate-classes-array');
 
 describe('core/classnames', () => {
+  const mockCC = cc as jest.Mock;
+  const mockGenerateClassesArray = generateClassesArray as jest.Mock;
+
   beforeEach(() => {
-    (cc as jest.Mock).mockImplementation(() => jest.fn());
-    (generateClassesArray as jest.Mock).mockImplementation(() => jest.fn(() => jest.fn()));
+    mockCC.mockImplementation(() => jest.fn());
+    mockGenerateClassesArray.mockImplementation(() => jest.fn(() => jest.fn()));
   });
 
   afterEach(() => {
@@ -27,16 +30,19 @@ describe('core/classnames', () => {
     const props = {};
     const classnamesInstance = classnames(classes);
 
-    const mockGenerateClassesArrayReturnValue: string[] = [];
-    const mockGenerateClassesArrayPropCurry = jest.fn(() => mockGenerateClassesArrayReturnValue);
-    const mockGenerateClassesArray = jest.fn(() => mockGenerateClassesArrayPropCurry);
+    const mockReturnValue: string[] = [];
+    const mockGenerateClassesArrayPropCurry = jest.fn(() => mockReturnValue);
 
-    (generateClassesArray as jest.Mock).mockImplementation(mockGenerateClassesArray);
+    mockGenerateClassesArray.mockImplementation(
+      jest.fn(() => {
+        return mockGenerateClassesArrayPropCurry;
+      }),
+    );
 
     classnamesInstance(props);
     expect(generateClassesArray).toHaveBeenCalledWith(classes);
     expect(mockGenerateClassesArrayPropCurry).toHaveBeenCalledWith(props);
-    expect(cc).toHaveBeenCalledWith(mockGenerateClassesArrayReturnValue);
+    expect(cc).toHaveBeenCalledWith(mockReturnValue);
   });
 
   it('should use an empty props object if none is provided', () => {
@@ -44,9 +50,12 @@ describe('core/classnames', () => {
     const classnamesInstance = classnames(classes);
 
     const mockGenerateClassesArrayPropCurry = jest.fn();
-    const mockGenerateClassesArray = jest.fn(() => mockGenerateClassesArrayPropCurry);
 
-    (generateClassesArray as jest.Mock).mockImplementation(mockGenerateClassesArray);
+    mockGenerateClassesArray.mockImplementation(
+      jest.fn(() => {
+        return mockGenerateClassesArrayPropCurry;
+      }),
+    );
 
     classnamesInstance();
     expect(mockGenerateClassesArrayPropCurry).toHaveBeenCalledWith({});

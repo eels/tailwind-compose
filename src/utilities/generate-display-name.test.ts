@@ -1,4 +1,4 @@
-import generateDisplayName from './generate-display-name';
+import { generateDisplayName } from '@src/utilities/generate-display-name';
 
 describe('utils/generateDisplayName', () => {
   it('should generate an appropriate name from a string target', () => {

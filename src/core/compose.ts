@@ -1,4 +1,4 @@
-import construct from '@src/lib/construct';
+import { construct } from '@src/lib/construct';
 import type { Attrs, ComposeFactory, ComposerFn, Props, Target } from '@types';
 
 const Compose = <P extends Props>(target: Target<P>, classes: ComposerFn<P>) => {

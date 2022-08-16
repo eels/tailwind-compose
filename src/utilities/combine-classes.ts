@@ -1,4 +1,4 @@
-export default function cc(classes: (string | undefined)[]) {
+export function cc(classes: (string | undefined)[]) {
   let final = '';
 
   for (let i = 0; i < classes.length; i++) {
