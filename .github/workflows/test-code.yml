@@ -45,3 +45,4 @@ jobs:
         with:
           base-path: ./packages/tailwind-compose
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./packages/tailwind-compose/coverage/lcov.info
