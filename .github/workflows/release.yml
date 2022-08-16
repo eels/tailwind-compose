@@ -78,4 +78,5 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd ./packages/tailwind-compose
+          cp ../../README.md ./README.md
           yarn publish --non-interactive
