@@ -38,7 +38,7 @@ jobs:
 
       - name: Test Code
         run: |
-          yarn test
+          yarn workspace tailwind-compose test
 
       - name: Publish To Coveralls
         uses: coverallsapp/github-action@master

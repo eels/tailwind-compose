@@ -1,0 +1,12 @@
+# --- Dependencies ------------------------------
+
+/node_modules
+
+# --- Caches ------------------------------------
+
+.eslintcache
+
+# --- Compiled resources ------------------------
+
+/coverage
+/dist

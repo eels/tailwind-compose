@@ -59,20 +59,23 @@ jobs:
 
       - name: Bump Package Version & Generate Changelog
         run: |
+          cd ./packages/tailwind-compose
           yarn version --${{ github.event.inputs.version }}
           yarn changelog
-
-      - name: Publish Package
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          yarn publish --non-interactive
 
       - name: Push Version Update & Tags
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          cd ./packages/tailwind-compose
           VERSION=$(node -p -e "require('./package.json').version")
           git add CHANGELOG.md && git commit -m "docs: update v$VERSION changelog"
           git push
           git push --tags
+
+      - name: Publish Package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd ./packages/tailwind-compose
+          yarn publish --non-interactive

@@ -1,0 +1,39 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "standard",
+    "semistandard",
+    "@tailwind-compose/eslint-config/lib/configs/compat.json",
+    "@tailwind-compose/eslint-config/lib/configs/import.json",
+    "@tailwind-compose/eslint-config/lib/configs/jest.json",
+    "@tailwind-compose/eslint-config/lib/configs/prettier.json",
+    "@tailwind-compose/eslint-config/lib/configs/react.json",
+    "@tailwind-compose/eslint-config/lib/configs/sort-destructure-keys.json",
+    "@tailwind-compose/eslint-config/lib/configs/sort-imports.json",
+    "@tailwind-compose/eslint-config/lib/configs/sort-keys.json",
+    "@tailwind-compose/eslint-config/lib/configs/testing-library.json",
+    "@tailwind-compose/eslint-config/lib/configs/typescript-sort-keys.json",
+    "@tailwind-compose/eslint-config/lib/configs/typescript.json"
+  ],
+
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "no-unused-vars": "off",
+    "no-use-before-define": "off",
+    "require-await": "error",
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "asyncArrow": "always",
+        "named": "never"
+      }
+    ],
+    "quote-props": ["error", "consistent-as-needed"]
+  }
+}

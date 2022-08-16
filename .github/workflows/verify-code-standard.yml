@@ -38,11 +38,11 @@ jobs:
 
       - name: Build
         run: |
-          yarn clean
-          yarn build
+          yarn workspace tailwind-compose clean
+          yarn workspace tailwind-compose build
 
       - name: Verify Code Standard
         run: |
-          yarn format
-          yarn lint
-          yarn lint:types
+          yarn workspace tailwind-compose format
+          yarn workspace tailwind-compose lint
+          yarn workspace tailwind-compose lint:types

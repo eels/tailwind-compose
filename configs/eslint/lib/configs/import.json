@@ -11,7 +11,7 @@
         "count": 1
       }
     ],
-    "import/no-unresolved": "error"
+    "import/no-unresolved": "off"
   },
 
   "settings": {
