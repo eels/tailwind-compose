@@ -1,0 +1,8 @@
+{
+  "extends": [
+    "@tailwind-compose/eslint-config/lib/eslintrc.json",
+    "plugin:@next/next/core-web-vitals"
+  ],
+
+  "plugins": ["@next/next"]
+}

@@ -9,18 +9,23 @@
   "packageManager": "yarn@1.22.19",
   "workspaces": [
     "configs/*",
+    "integrations/*",
     "packages/*"
   ],
   "scripts": {
+    "cypress:run": "cypress run",
+    "e2e:next": "start-server-and-test integrations:next 3000 cypress:run",
+    "integrations:next": "yarn workspace @tailwind-compose/next dev",
     "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@tailwind-compose/prettier-config": "*",
+    "cypress": "^10.6.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
-    "turbo": "^1.4.3",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "start-server-and-test": "^1.14.0"
   }
 }
