@@ -43,4 +43,5 @@ jobs:
       - name: Publish To Coveralls
         uses: coverallsapp/github-action@master
         with:
+          base-path: ./packages/tailwind-compose
           github-token: ${{ secrets.GITHUB_TOKEN }}
