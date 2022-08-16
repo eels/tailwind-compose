@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.1](https://github.com/eels/tailwind-compose/compare/v0.5.0...v0.5.1) - 2022-08-16
+
+### Commits
+
+- docs: update v0.5.0 changelog [`6df2e2f`](https://github.com/eels/tailwind-compose/commit/6df2e2fca92fc8ce787be9e77c954b57e43e99ce)
+- feat: convert project to monorepo [`ed84f77`](https://github.com/eels/tailwind-compose/commit/ed84f77b54268e832a3d62baab0be360b353e488)
+- feat: setup initial cypress integration tests for nextjs [`21b3480`](https://github.com/eels/tailwind-compose/commit/21b3480ac221b172b1b5440cf4f8a7b8e4d77782)
+- fix: add base path to test workflow [`154babf`](https://github.com/eels/tailwind-compose/commit/154babf5594a34006602aae635e94e56407c91e4)
+- fix: add path to lcov to test workflow [`fc6c0e5`](https://github.com/eels/tailwind-compose/commit/fc6c0e582df594f89c53ccc19a35db1580de8710)
+- fix: fix different react versions [`28204ed`](https://github.com/eels/tailwind-compose/commit/28204edbe16fd578aea8306508447fac39f96cae)
+
 ## [v0.5.0](https://github.com/eels/tailwind-compose/compare/v0.4.3...v0.5.0) - 2022-08-16
 
 ### Commits
