@@ -17,7 +17,7 @@ export default function construct<P extends Props, A>(options: ConstructOptions<
     function composed(props: P, ref: Ref<Element>) {
       const constructedProps = Object.assign<ClassName, A, P>({}, attrs, props);
       const constructedPropsKeys = Object.keys(constructedProps);
-      const as = constructedProps.as || target;
+      const as = constructedProps.as;
       const hasValidAs = ['function', 'object', 'string'].includes(typeof as);
       const element = hasValidAs && !isTargetObject ? as : target;
       const componentClassNames = constructedProps.className;
