@@ -6,7 +6,6 @@
   "repository": "https://github.com/eels/tailwind-compose",
   "bugs": "https://github.com/eels/tailwind-compose/issues",
   "license": "MIT",
-  "packageManager": "yarn@1.22.19",
   "workspaces": [
     "configs/*",
     "integrations/*",
@@ -22,6 +21,7 @@
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@tailwind-compose/prettier-config": "*",
+    "@tailwind-compose/typescript-config": "*",
     "cypress": "^10.6.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
