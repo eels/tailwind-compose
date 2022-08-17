@@ -14,7 +14,7 @@
   "scripts": {
     "cypress:run": "cypress run",
     "e2e:next": "start-server-and-test integrations:next 3000 cypress:run",
-    "integrations:next": "yarn workspace @tailwind-compose/next dev",
+    "integrations:next": "yarn workspace @tailwind-compose/integration-next dev",
     "prepare": "husky install"
   },
   "devDependencies": {

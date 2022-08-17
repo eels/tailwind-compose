@@ -3,6 +3,7 @@
 
   "compilerOptions": {
     "baseUrl": "./",
+    "isolatedModules": false,
     "noEmit": true,
     "types": ["cypress"]
   },

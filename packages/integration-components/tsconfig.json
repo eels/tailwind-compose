@@ -1,0 +1,9 @@
+{
+  "extends": "@tailwind-compose/typescript-config/lib/tsconfig.json",
+
+  "compilerOptions": {
+    "noEmit": true
+  },
+
+  "include": ["./components/**/*"]
+}

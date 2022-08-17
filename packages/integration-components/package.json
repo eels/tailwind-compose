@@ -1,0 +1,23 @@
+{
+  "name": "@tailwind-compose/integration-components",
+  "private": true,
+  "version": "1.0.0",
+  "main": "./components/index.tsx",
+  "scripts": {
+    "format": "prettier \"./components/**/*.{js,ts,tsx}\" --check",
+    "format:fix": "yarn format --write",
+    "lint": "eslint \"./components/**/*.{js,ts,tsx}\" --cache",
+    "lint:fix": "yarn lint --fix"
+  },
+  "dependencies": {
+    "tailwind-compose": "*"
+  },
+  "devDependencies": {
+    "@tailwind-compose/eslint-config": "*",
+    "@tailwind-compose/prettier-config": "*",
+    "@tailwind-compose/typescript-config": "*",
+    "eslint": "^8.22.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  }
+}

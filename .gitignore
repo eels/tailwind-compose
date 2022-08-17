@@ -29,3 +29,7 @@ yarn.lock
 # --- Caches ------------------------------------
 
 .eslintcache
+
+# --- Cypress -----------------------------------
+
+/cypress/screenshots
