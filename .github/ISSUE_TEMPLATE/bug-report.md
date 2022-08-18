@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Create a bug report for chic-modules
+about: Create a bug report for tailwind-compose
 labels: bug
 ---
 
