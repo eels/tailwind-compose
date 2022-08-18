@@ -4,8 +4,11 @@ node_modules
 
 # --- Caches ------------------------------------
 
+.cache
 .eslintcache
 
 # --- Compiled ----------------------------------
 
-.next
+app/styles
+build
+public

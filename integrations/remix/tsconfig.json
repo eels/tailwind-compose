@@ -1,0 +1,25 @@
+{
+  "extends": "@tailwind-compose/typescript-config/lib/tsconfig.json",
+
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "paths": {
+      "~/*": ["./app/*"]
+    },
+    "resolveJsonModule": true,
+    "strict": true,
+    "target": "es5"
+  },
+
+  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"]
+}

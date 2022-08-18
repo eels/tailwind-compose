@@ -1,6 +1,6 @@
 # --- Dependencies ------------------------------
 
-/node_modules
+node_modules
 
 # --- Caches ------------------------------------
 
@@ -8,5 +8,5 @@
 
 # --- Compiled resources ------------------------
 
-/coverage
-/dist
+coverage
+dist

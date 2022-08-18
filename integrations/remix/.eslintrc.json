@@ -1,0 +1,7 @@
+{
+  "extends": [
+    "@tailwind-compose/eslint-config/lib/eslintrc.json",
+    "@remix-run/eslint-config",
+    "@remix-run/eslint-config/node"
+  ]
+}
