@@ -51,23 +51,46 @@ export default function Home() {
         Extended Component w/ attrs Button
       </Composed.ExtendedButton>
 
-      {/* Conditional Class as string */}
+      {/* Conditional Class as string Component */}
       <Composed.CondButtonString
         data-cy='conditional-button-string'
         isActive={strBtnEnabled}
         onClick={handleSetStrBtnEnabled}
       >
-        Conditional Class as string Button
+        Conditional Class as string Component Button
       </Composed.CondButtonString>
 
-      {/* Conditional Class as array */}
+      {/* Conditional Class as array Component */}
       <Composed.CondButtonArray
         data-cy='conditional-button-array'
         isActive={arrBtnEnabled}
         onClick={handleSetArrBtnEnabled}
       >
-        Conditional Class as array Button
+        Conditional Class as array Component Button
       </Composed.CondButtonArray>
+
+      {/* Basic ClassNames */}
+      <h1 className={Composed.BasicClassNamesHeadline()} data-cy='basic-classnames-headline'>
+        Basic ClassNames Headline
+      </h1>
+
+      {/* Conditional ClassNames as string */}
+      <button
+        data-cy='conditional-classnames-button-string'
+        className={Composed.CondClassNamesButtonString({ isActive: strBtnEnabled })}
+        onClick={handleSetStrBtnEnabled}
+      >
+        Conditional ClassNames as string Component Button
+      </button>
+
+      {/* Conditional ClassNames as array */}
+      <button
+        data-cy='conditional-classnames-button-array'
+        className={Composed.CondClassNamesButtonArray({ isActive: arrBtnEnabled })}
+        onClick={handleSetArrBtnEnabled}
+      >
+        Conditional ClassNames as array Component Button
+      </button>
     </Fragment>
   );
 }

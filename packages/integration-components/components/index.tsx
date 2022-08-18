@@ -1,4 +1,4 @@
-import { compose } from 'tailwind-compose';
+import { classnames, compose } from 'tailwind-compose';
 
 // --- Basic Component --------------------------
 
@@ -48,7 +48,7 @@ export const BasicButton = compose.button(() => [
 
 export const ExtendedButton = compose.attrs({ disabled: true })(BasicButton, () => []);
 
-// --- Conditional Class as string --------------
+// --- Conditional Class as string Component --------------
 
 export const CondButtonString = compose.button((conditional) => [
   'bg-red-400', //
@@ -57,9 +57,34 @@ export const CondButtonString = compose.button((conditional) => [
   conditional('text-white', ({ isActive }) => isActive),
 ]);
 
-// --- Conditional Class as array --------------
+// --- Conditional Class as array Component --------------
 
 export const CondButtonArray = compose.button((conditional) => [
+  'bg-red-800', //
+  'block',
+  'mb-4',
+  conditional(['text-white', 'bg-black'], ({ isActive }) => isActive),
+]);
+
+// --- Basic ClassNames -------------------------
+
+export const BasicClassNamesHeadline = classnames(() => [
+  'text-red-400', //
+  'mb-4',
+]);
+
+// --- Conditional ClassNames as string --------------
+
+export const CondClassNamesButtonString = classnames((conditional) => [
+  'bg-red-400', //
+  'block',
+  'mb-4',
+  conditional('text-white', ({ isActive }) => isActive),
+]);
+
+// --- Conditional ClassNames as array --------------
+
+export const CondClassNamesButtonArray = classnames((conditional) => [
   'bg-red-800', //
   'block',
   'mb-4',
