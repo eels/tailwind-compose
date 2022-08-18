@@ -36,6 +36,16 @@ export default function Home() {
       {/* Basic Component w/ attrs via property */}
       <Composed.BasicEmailFieldProperty data-cy='basic-email-field-property' />
 
+      {/* Basic Component w/ as string prop */}
+      <Composed.BasicButton data-cy='basic-button-as-string' as='div'>
+        Basic Component w/ as string prop
+      </Composed.BasicButton>
+
+      {/* Basic Component w/ as component prop */}
+      <Composed.BasicButton data-cy='basic-button-as-component' as={Composed.BasicHeadline}>
+        Basic Component w/ as component prop
+      </Composed.BasicButton>
+
       {/* Extended Component w/ attrs */}
       <Composed.ExtendedButton data-cy='extended-button'>
         Extended Component w/ attrs Button

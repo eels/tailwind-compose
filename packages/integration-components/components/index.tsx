@@ -40,7 +40,7 @@ export const BasicEmailFieldProperty = compose.input.attrs({ type: 'email' })(()
 
 // --- Extended Component w/ attrs --------------
 
-const BasicButton = compose.button(() => [
+export const BasicButton = compose.button(() => [
   'bg-red-400', //
   'block',
   'mb-4',

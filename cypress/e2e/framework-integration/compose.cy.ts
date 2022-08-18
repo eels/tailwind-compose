@@ -4,67 +4,81 @@ describe('framework-integration/compose', () => {
   });
 
   it('should correctly have a basic component', () => {
-    const component = cy.get('[data-cy="basic-headline"]');
+    const component = '[data-cy="basic-headline"]';
 
-    component.should('have.class', 'text-red-400 mb-4');
+    cy.get(component).should('have.class', 'text-red-400 mb-4');
+    cy.get(component).should('have.prop', 'tagName').should('eq', 'H1');
   });
 
   it('should correctly have a basic component via property', () => {
-    const component = cy.get('[data-cy="basic-headline-property"]');
+    const component = '[data-cy="basic-headline-property"]';
 
-    component.should('have.class', 'text-red-800 mb-4');
+    cy.get(component).should('have.class', 'text-red-800 mb-4');
+    cy.get(component).should('have.prop', 'tagName').should('eq', 'H1');
   });
 
   it('should correctly have an extended component', () => {
-    const component = cy.get('[data-cy="extended-headline"]');
+    const component = '[data-cy="extended-headline"]';
 
-    component.should('have.class', 'text-red-400 mb-4 underline');
+    cy.get(component).should('have.class', 'text-red-400 mb-4 underline');
+    cy.get(component).should('have.prop', 'tagName').should('eq', 'H1');
   });
 
   it('should correctly have a basic component w/ attrs', () => {
-    const component = cy.get('[data-cy="basic-email-field"]');
+    const component = '[data-cy="basic-email-field"]';
 
-    component.should('have.class', 'border border-red-400 block mb-4');
-    component.should('have.attr', 'type', 'email');
+    cy.get(component).should('have.class', 'border border-red-400 block mb-4');
+    cy.get(component).should('have.attr', 'type', 'email');
+    cy.get(component).should('have.prop', 'tagName').should('eq', 'INPUT');
   });
 
   it('should correctly have a basic component via property w/ attrs', () => {
-    const component = cy.get('[data-cy="basic-email-field-property"]');
+    const component = '[data-cy="basic-email-field-property"]';
 
-    component.should('have.class', 'border border-red-800 block mb-4');
-    component.should('have.attr', 'type', 'email');
+    cy.get(component).should('have.class', 'border border-red-800 block mb-4');
+    cy.get(component).should('have.attr', 'type', 'email');
+    cy.get(component).should('have.prop', 'tagName').should('eq', 'INPUT');
   });
 
   it('should correctly have an extended component w/ attrs', () => {
-    const component = cy.get('[data-cy="extended-button"]');
+    const component = '[data-cy="extended-button"]';
 
-    component.should('have.class', 'bg-red-400 block mb-4');
-    component.should('have.attr', 'disabled');
+    cy.get(component).should('have.class', 'bg-red-400 block mb-4');
+    cy.get(component).should('have.attr', 'disabled');
+    cy.get(component).should('have.prop', 'tagName').should('eq', 'BUTTON');
+  });
+
+  it('should correctly have an `as (string)` transformed component', () => {
+    const component = '[data-cy="basic-button-as-string"]';
+
+    cy.get(component).should('have.class', 'bg-red-400 block mb-4');
+    cy.get(component).should('have.prop', 'tagName').should('eq', 'DIV');
+  });
+
+  it('should correctly have an `as (component)` transformed component', () => {
+    const component = '[data-cy="basic-button-as-component"]';
+
+    cy.get(component).should('have.class', 'bg-red-400 block mb-4');
+    cy.get(component).should('have.prop', 'tagName').should('eq', 'H1');
   });
 
   it('should correctly have a conditional class (string)', () => {
-    let component = cy.get('[data-cy="conditional-button-string"]');
+    const component = '[data-cy="conditional-button-string"]';
 
-    component.should('have.class', 'bg-red-400 block mb-4');
-    component.should('not.have.class', 'text-white');
-
-    component.click();
-
-    component = cy.get('[data-cy="conditional-button-string"]');
-
-    component.should('have.class', 'bg-red-400 block mb-4 text-white');
+    cy.get(component).should('have.class', 'bg-red-400 block mb-4');
+    cy.get(component).should('not.have.class', 'text-white');
+    cy.get(component).should('have.prop', 'tagName').should('eq', 'BUTTON');
+    cy.get(component).click();
+    cy.get(component).should('have.class', 'bg-red-400 block mb-4 text-white');
   });
 
   it('should correctly have a conditional class (array)', () => {
-    let component = cy.get('[data-cy="conditional-button-array"]');
+    const component = '[data-cy="conditional-button-array"]';
 
-    component.should('have.class', 'bg-red-800 block mb-4');
-    component.should('not.have.class', 'text-white bg-black');
-
-    component.click();
-
-    component = cy.get('[data-cy="conditional-button-array"]');
-
-    component.should('have.class', 'bg-red-800 block mb-4 text-white bg-black');
+    cy.get(component).should('have.class', 'bg-red-800 block mb-4');
+    cy.get(component).should('not.have.class', 'text-white bg-black');
+    cy.get(component).should('have.prop', 'tagName').should('eq', 'BUTTON');
+    cy.get(component).click();
+    cy.get(component).should('have.class', 'bg-red-800 block mb-4 text-white bg-black');
   });
 });
