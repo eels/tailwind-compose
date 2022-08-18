@@ -2,8 +2,8 @@
 
 module.exports = {
   content: [
-    './{components,pages}/**/*.{jsx,tsx}',
-    '../../node_modules/@tailwind-compose/integration-components/components/**/*.{jsx,tsx}',
+    './pages/**/*.{ts,tsx}',
+    '../../node_modules/@tailwind-compose/integration-components/src/**/*.{ts,tsx}',
   ],
 
   plugins: [],

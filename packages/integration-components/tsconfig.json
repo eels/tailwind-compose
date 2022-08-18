@@ -2,8 +2,9 @@
   "extends": "@tailwind-compose/typescript-config/lib/tsconfig.json",
 
   "compilerOptions": {
+    "jsx": "preserve",
     "noEmit": true
   },
 
-  "include": ["./components/**/*"]
+  "include": ["src/**/*"]
 }
