@@ -39,5 +39,6 @@ jobs:
 
       - name: Integration Tests - Next
         run: |
+          yarn e2e:gatsby
           yarn e2e:next
           yarn e2e:remix
