@@ -9,6 +9,7 @@ jobs:
 
     strategy:
       matrix:
+        integration: [e2e:gatsby, e2e:next, e2e:remix]
         node-version: [16.x]
 
     steps:
@@ -37,8 +38,6 @@ jobs:
           yarn install --prefer-offline
           yarn workspace tailwind-compose build
 
-      - name: Integration Tests - Next
+      - name: Run Integration Tests
         run: |
-          yarn e2e:gatsby
-          yarn e2e:next
-          yarn e2e:remix
+          yarn ${{ matrix.integration }}
