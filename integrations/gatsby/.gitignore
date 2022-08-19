@@ -1,0 +1,13 @@
+# --- Dependencies ------------------------------
+
+node_modules
+
+# --- Caches ------------------------------------
+
+.eslintcache
+
+# --- Compiled ----------------------------------
+
+.cache
+public
+src/gatsby-types.d.ts

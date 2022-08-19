@@ -1,9 +1,9 @@
 import * as Composed from '../styles';
-import { Fragment, useState } from 'react';
+import * as React from 'react';
 
 export function ClassnamesComponents() {
-  const [strBtnEnabled, setStrBtnEnabled] = useState(false);
-  const [arrBtnEnabled, setArrBtnEnabled] = useState(false);
+  const [strBtnEnabled, setStrBtnEnabled] = React.useState(false);
+  const [arrBtnEnabled, setArrBtnEnabled] = React.useState(false);
 
   const handleSetStrBtnEnabled = () => {
     setStrBtnEnabled((state) => !state);
@@ -14,7 +14,7 @@ export function ClassnamesComponents() {
   };
 
   return (
-    <Fragment>
+    <React.Fragment>
       {/* Basic ClassNames */}
       <h1 className={Composed.BasicClassNamesHeadline()} data-cy='basic-classnames-headline'>
         Basic ClassNames Headline
@@ -37,6 +37,6 @@ export function ClassnamesComponents() {
       >
         Conditional ClassNames as array Component Button
       </button>
-    </Fragment>
+    </React.Fragment>
   );
 }

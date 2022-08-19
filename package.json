@@ -13,8 +13,10 @@
   ],
   "scripts": {
     "cypress:run": "cypress run",
+    "e2e:gatsby": "start-server-and-test integrations:next 3000 cypress:run",
     "e2e:next": "start-server-and-test integrations:next 3000 cypress:run",
     "e2e:remix": "start-server-and-test integrations:remix 3000 cypress:run",
+    "integrations:gatsby": "yarn workspace @tailwind-compose/integration-gatsby dev",
     "integrations:next": "yarn workspace @tailwind-compose/integration-next dev",
     "integrations:remix": "yarn workspace @tailwind-compose/integration-remix dev",
     "prepare": "husky install"

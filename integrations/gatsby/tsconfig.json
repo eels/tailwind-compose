@@ -1,0 +1,13 @@
+{
+  "extends": "@tailwind-compose/typescript-config/lib/tsconfig.json",
+
+  "compilerOptions": {
+    "incremental": true,
+    "jsx": "preserve",
+    "module": "esnext",
+    "noEmit": true,
+    "target": "es5"
+  },
+
+  "include": ["./src/**/*", "./gatsby-node.ts", "./plugins/**/*"]
+}

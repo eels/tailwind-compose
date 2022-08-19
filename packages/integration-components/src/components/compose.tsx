@@ -1,9 +1,9 @@
 import * as Composed from '../styles';
-import { Fragment, useState } from 'react';
+import * as React from 'react';
 
 export function ComposeComponents() {
-  const [strBtnEnabled, setStrBtnEnabled] = useState(false);
-  const [arrBtnEnabled, setArrBtnEnabled] = useState(false);
+  const [strBtnEnabled, setStrBtnEnabled] = React.useState(false);
+  const [arrBtnEnabled, setArrBtnEnabled] = React.useState(false);
 
   const handleSetStrBtnEnabled = () => {
     setStrBtnEnabled((state) => !state);
@@ -14,7 +14,7 @@ export function ComposeComponents() {
   };
 
   return (
-    <Fragment>
+    <React.Fragment>
       {/* Basic Component */}
       <Composed.BasicHeadline data-cy='basic-headline'>
         Basic Component Headline
@@ -68,6 +68,6 @@ export function ComposeComponents() {
       >
         Conditional Class as array Component Button
       </Composed.CondButtonArray>
-    </Fragment>
+    </React.Fragment>
   );
 }
