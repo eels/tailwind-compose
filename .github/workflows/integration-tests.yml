@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        integration: [e2e:gatsby, e2e:next, e2e:remix]
+        integration: [gatsby, next, remix]
         node-version: [16.x]
 
     steps:
@@ -40,4 +40,4 @@ jobs:
 
       - name: Run Integration Tests
         run: |
-          yarn ${{ matrix.integration }}
+          yarn e2e:${{ matrix.integration }}
