@@ -21,7 +21,7 @@
     "@tailwind-compose/prettier-config": "*",
     "@tailwind-compose/typescript-config": "*",
     "@types/node": "18.7.21",
-    "@types/react": "18.0.20",
+    "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "autoprefixer": "10.4.12",
     "eslint": "8.24.0",
