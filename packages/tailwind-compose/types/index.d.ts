@@ -1,5 +1,10 @@
 import type tags from './tags';
-import type { ComponentType, ForwardRefExoticComponent, PropsWithoutRef } from 'react';
+import type {
+  ComponentType,
+  ForwardRefExoticComponent,
+  PropsWithoutRef,
+  RefAttributes,
+} from 'react';
 
 export type ExtendableObject<T = any> = Record<string, T>;
 
@@ -21,7 +26,11 @@ export type Classes<P> = (string | Tuple<P>)[];
 
 export type ComposerFn<P> = (conditional: Conditional<P>) => Classes<P>;
 
-export type Component<P> = ForwardRefExoticComponent<PropsWithoutRef<P>>;
+export type WithoutRef<P> = ForwardRefExoticComponent<PropsWithoutRef<P>>;
+
+export type WithRef<P, E> = ForwardRefExoticComponent<P & RefAttributes<E>>;
+
+export type Component<P, E = void> = E extends void ? WithoutRef<P> : WithRef<P, E>;
 
 export type Target<P> = string | ComponentType<P> | Component<P>;
 
