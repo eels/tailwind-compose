@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.6.0](https://github.com/eels/tailwind-compose/compare/v0.5.2...v0.6.0) - 2022-10-08
+
+### Commits
+
+- build(deps): bump @remix-run/node from 1.6.8 to 1.7.0 [`5c5bab6`](https://github.com/eels/tailwind-compose/commit/5c5bab6a7e006a6809521bec6621713488989bd7)
+- build(deps): bump @remix-run/node from 1.7.0 to 1.7.1 [`a6ab808`](https://github.com/eels/tailwind-compose/commit/a6ab808a96e3c5991a7449d3a033d484978ecaf4)
+- build(deps): bump @remix-run/node from 1.7.1 to 1.7.2 [`f238fa2`](https://github.com/eels/tailwind-compose/commit/f238fa2f868daf2afb4c98c09f3caa76ce0357f3)
+- build(deps): bump @remix-run/react from 1.6.8 to 1.7.0 [`c710e25`](https://github.com/eels/tailwind-compose/commit/c710e25657e1977965aad13949f9a47199009694)
+- build(deps): bump @remix-run/react from 1.7.0 to 1.7.2 [`7a9f47b`](https://github.com/eels/tailwind-compose/commit/7a9f47b38aa644b4112590b83b29ad661bc69356)
+- build(deps): bump @remix-run/serve from 1.6.8 to 1.7.0 [`8e71d39`](https://github.com/eels/tailwind-compose/commit/8e71d3921af3c36351ce801959e81bc25f4bc779)
+- build(deps): bump @remix-run/serve from 1.7.0 to 1.7.1 [`8ae8c0e`](https://github.com/eels/tailwind-compose/commit/8ae8c0e99ddb5ed5175d29a8ade394c2dcf8eb5e)
+- build(deps): bump @remix-run/serve from 1.7.1 to 1.7.2 [`98dfb13`](https://github.com/eels/tailwind-compose/commit/98dfb13fa4781aea09c38fbfca1b74cc1e4f406b)
+- build(deps): bump dependabot/fetch-metadata from 1.3.3 to 1.3.4 [`a35b1e3`](https://github.com/eels/tailwind-compose/commit/a35b1e3812d3561efca3436b6ba3c2347c49bd38)
+- build(deps): bump gatsby from 4.21.1 to 4.23.1 [`63f6b70`](https://github.com/eels/tailwind-compose/commit/63f6b70658c0fc513651797811cc83ad0a339052)
+
 ## [v0.5.2](https://github.com/eels/tailwind-compose/compare/v0.5.1...v0.5.2) - 2022-08-16
 
 ### Commits
