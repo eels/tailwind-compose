@@ -1,8 +1,6 @@
 {
   "collectCoverageFrom": ["src/**/*.{ts,tsx}"],
 
-  "moduleDirectories": ["node_modules", "src", "test", "types"],
-
   "moduleFileExtensions": ["js", "ts", "tsx"],
 
   "moduleNameMapper": {

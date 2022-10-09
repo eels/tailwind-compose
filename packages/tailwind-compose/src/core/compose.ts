@@ -1,17 +1,17 @@
 import { construct } from '@src/lib/construct';
 import type { Attrs, ComposeFactory, ComposerFn, Props, Target } from '@types';
 
-const Compose = <P extends Props>(target: Target<P>, classes: ComposerFn<P>) => {
-  return construct<P, Record<string, unknown>>({
+const Compose = <P extends Props, E = void>(target: Target<P, E>, classes: ComposerFn<P>) => {
+  return construct<P, Record<string, unknown>, E>({
     classes,
     target,
   });
 };
 
 Object.defineProperty(Compose, 'attrs', {
-  value: <P extends Props, A extends Attrs>(attrs: A) => {
-    return (target: Target<P>, classes: ComposerFn<P & A>) => {
-      return construct<P, A>({
+  value: <A extends Attrs>(attrs: A) => {
+    return <P extends Props, E = void>(target: Target<P, E>, classes: ComposerFn<P & A>) => {
+      return construct<P, A, E>({
         attrs,
         classes,
         target,
@@ -26,20 +26,20 @@ const ComposeFactoryProxyInstance = new Proxy(Compose, {
       return Reflect.get(target, property);
     }
 
-    const ComposeTag = <P extends Props>(classes: ComposerFn<P>) => {
-      return construct<P, Record<string, unknown>>({
+    const ComposeTag = <P extends Props, E = void>(classes: ComposerFn<P>) => {
+      return construct<P, Record<string, unknown>, E>({
         classes,
-        target: property as Target<P>,
+        target: property as Target<P, E>,
       });
     };
 
     Object.defineProperty(ComposeTag, 'attrs', {
-      value: <P extends Props, A extends Attrs>(attrs: A) => {
-        return (classes: ComposerFn<P & A>) => {
-          return construct<P, A>({
+      value: <A extends Attrs>(attrs: A) => {
+        return <P extends Props, E = void>(classes: ComposerFn<P & A>) => {
+          return construct<P, A, E>({
             attrs,
             classes,
-            target: property as Target<P>,
+            target: property as Target<P, E>,
           });
         };
       },

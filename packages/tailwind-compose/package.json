@@ -30,9 +30,9 @@
     "format:fix": "yarn format --write",
     "lint": "eslint \"./{src,test,types}/**/*.{js,ts,tsx}\" --cache",
     "lint:fix": "yarn lint --fix",
-    "lint:types": "tsc --noEmit",
     "prepack": "yarn clean && yarn build",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "typescript:verify": "tsc --noEmit"
   },
   "browserslist": [
     "defaults"
@@ -40,6 +40,7 @@
   "files": [
     "dist/",
     "types/index.d.ts",
+    "types/react.ts",
     "types/tags.ts",
     "LICENSE.md",
     "package.json",
@@ -72,8 +73,8 @@
     "@testing-library/react": "^12.1.5",
     "@types/jest": "^28.1.3",
     "@types/node": "^18.0.0",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "auto-changelog": "^2.4.0",
     "eslint": "^8.22.0",
     "jest": "^28.1.2",

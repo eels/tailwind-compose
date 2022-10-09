@@ -6,7 +6,7 @@
     "jsx": "preserve",
     "module": "esnext",
     "noEmit": true,
-    "target": "es5"
+    "target": "es6"
   },
 
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
