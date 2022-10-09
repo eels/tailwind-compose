@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.7.0](https://github.com/eels/tailwind-compose/compare/v0.6.0...v0.7.0) - 2022-10-09
+
+### Commits
+
+- build(deps): bump gatsby from 4.24.1 to 4.24.3 [`0b03fef`](https://github.com/eels/tailwind-compose/commit/0b03fef180602c373dfc18b2f0e09b03b2185de6)
+- chore: bump failing github deps [`25c3dea`](https://github.com/eels/tailwind-compose/commit/25c3dea55e945624efa6ffaaa2bbcf9eba12764a)
+- chore(deps-dev): bump @types/jest from 28.1.8 to 29.1.2 [`e5ac4f9`](https://github.com/eels/tailwind-compose/commit/e5ac4f966a1f7edca7f07308c1605f9cb6c11921)
+- chore(deps-dev): bump @types/node from 18.7.21 to 18.8.3 [`204a0bd`](https://github.com/eels/tailwind-compose/commit/204a0bdac3cb43157bcb5a71ce38f075a01203fb)
+- chore(deps-dev): bump eslint from 8.24.0 to 8.25.0 [`947b6a7`](https://github.com/eels/tailwind-compose/commit/947b6a79b334a62ddcd13441d3efe2efa712ffa8)
+- chore(deps-dev): bump gatsby-plugin-postcss from 5.23.0 to 5.24.0 [`7638cd0`](https://github.com/eels/tailwind-compose/commit/7638cd0423e4d5a6632f9f0b534095c5fe95986b)
+- docs: update v0.6.0 changelog [`50caa68`](https://github.com/eels/tailwind-compose/commit/50caa68c5f14326d9b4ba28db3ef3dec7365a198)
+- fix: update yarn command for typescript verify [`16c1b84`](https://github.com/eels/tailwind-compose/commit/16c1b842603965d5cc467b261959b7ce818b2b93)
+- refactor: change interface to declare custom props with refs [`87c7af6`](https://github.com/eels/tailwind-compose/commit/87c7af613d58e096af92e8e734a865ec04f1bded)
+
 ## [v0.6.0](https://github.com/eels/tailwind-compose/compare/v0.5.2...v0.6.0) - 2022-10-08
 
 ### Commits
