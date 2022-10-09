@@ -45,4 +45,4 @@ jobs:
         run: |
           yarn workspace tailwind-compose format
           yarn workspace tailwind-compose lint
-          yarn workspace tailwind-compose lint:types
+          yarn workspace tailwind-compose typescript:verify
