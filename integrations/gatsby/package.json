@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@tailwind-compose/integration-components": "*",
-    "gatsby": "4.24.1",
+    "gatsby": "4.24.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "tailwind-compose": "*"
@@ -24,9 +24,9 @@
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "autoprefixer": "10.4.12",
-    "eslint": "8.24.0",
+    "eslint": "8.25.0",
     "gatsby-plugin-postcss": "5.24.0",
-    "postcss": "8.4.16",
+    "postcss": "8.4.17",
     "prettier": "2.7.1",
     "tailwindcss": "3.1.8",
     "typescript": "4.8.4"
