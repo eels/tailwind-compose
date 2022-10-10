@@ -1,7 +1,7 @@
 {
   "name": "tailwind-compose",
   "type": "module",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Easily abstract and compose your React Tailwind classes",
   "author": "Liam Howell <liam@liam.codes>",
   "homepage": "https://github.com/eels/tailwind-compose#readme",
