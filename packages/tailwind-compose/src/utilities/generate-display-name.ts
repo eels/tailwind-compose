@@ -1,6 +1,6 @@
-import type { Props, Target } from '@types';
+import type { Target } from '@types';
 
-export function generateDisplayName<P extends Props, E = void>(target: Target<P, E>) {
+export function generateDisplayName<P, E = void>(target: Target<P, E>) {
   if (typeof target === 'string') {
     return `composed.${target}`;
   }

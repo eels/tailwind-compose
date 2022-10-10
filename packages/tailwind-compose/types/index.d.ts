@@ -8,8 +8,6 @@ export type Attrs = ExtendableObject;
 
 export type Props = ExtendableObject;
 
-export type ClassName = { className?: string };
-
 export type ConditionTarget = string | Array<string>;
 
 export type Condition<P> = (props: P) => boolean;
@@ -26,30 +24,36 @@ export type Component<P, E = void> = E extends void ? WithoutRef<P> : WithRef<P,
 
 export type Target<P, E> = string | ComponentType<P> | Component<P, E>;
 
-export type Compose = <P extends Props, E = void>(
+export type StyledCompose = <P extends Props, E = void>(
   target: Target<P, E>,
   classes: ComposerFn<P>,
-) => Component<P>;
+) => Component<P, E>;
 
-export type TagCompose = <P extends Props, E = void>(classes: ComposerFn<P>) => Component<P, E>;
+export type StyledTagCompose = <P extends Props, E = void>(
+  classes: ComposerFn<P>,
+) => Component<P, E>;
 
 export type WithAttrs = {
-  attrs: <A extends Attrs>(attrs: A) => Compose;
+  attrs: <A extends Attrs>(attrs: A) => StyledCompose;
 };
 
 export type WithTagAttrs = {
-  [key in typeof tags[number]]: TagCompose & {
-    attrs: <A extends Attrs>(attrs: A) => TagCompose;
+  [key in typeof tags[number]]: StyledTagCompose & {
+    attrs: <A extends Attrs>(attrs: A) => StyledTagCompose;
   };
 };
 
-export type ConstructOptions<P extends Props, A extends Attrs, E = void> = {
+export type ClassName = {
+  className?: string;
+};
+
+export type ConstructOptions<P, A, E> = {
   attrs?: A;
   classes: ComposerFn<P & A>;
   target: Target<P, E>;
 };
 
-export type ComposeFactory = Compose & WithAttrs & WithTagAttrs;
+export type ComposeFactory = StyledCompose & WithAttrs & WithTagAttrs;
 
 export function classnames<P extends Props>(classes: ComposerFn<P>): (props?: P) => string;
 

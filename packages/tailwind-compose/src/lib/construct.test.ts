@@ -8,7 +8,7 @@ type Blank = ExtendableObject<never>;
 
 describe('lib/construct', () => {
   it('should render a basic element', () => {
-    const parameters: ConstructOptions<Blank, Blank> = {
+    const parameters: ConstructOptions<Blank, Blank, void> = {
       classes: () => ['text-black'],
       target: 'h1',
     };
@@ -19,7 +19,11 @@ describe('lib/construct', () => {
   });
 
   it('should render a basic element with additional attrs', () => {
-    const parameters: ConstructOptions<Blank, { type: string }> = {
+    interface Attrs {
+      type: string;
+    }
+
+    const parameters: ConstructOptions<Blank, Attrs, void> = {
       attrs: { type: 'text' },
       classes: () => ['text-black'],
       target: 'input',
@@ -32,7 +36,15 @@ describe('lib/construct', () => {
   });
 
   it('should render a basic element without passing non-valid props as attributes', () => {
-    const parameters: ConstructOptions<{ noneValidProp: boolean }, { noneValidAttr: boolean }> = {
+    interface Props {
+      noneValidProp: boolean;
+    }
+
+    interface Attrs {
+      noneValidAttr: boolean;
+    }
+
+    const parameters: ConstructOptions<Props, Attrs, void> = {
       attrs: { noneValidAttr: true },
       classes: () => ['text-black'],
       target: 'h1',
@@ -44,7 +56,12 @@ describe('lib/construct', () => {
   });
 
   it('should render the correct element when `as` is supplied', () => {
-    const parameters: ConstructOptions<{ 'as': string; 'data-testid': string }, Blank> = {
+    interface Props {
+      'as': string;
+      'data-testid': string;
+    }
+
+    const parameters: ConstructOptions<Props, Blank, void> = {
       classes: () => ['text-black'],
       target: 'h1',
     };
@@ -56,7 +73,12 @@ describe('lib/construct', () => {
   });
 
   it('should allow passed children to be rendered', () => {
-    const parameters: ConstructOptions<{ 'as': string; 'data-testid': string }, Blank> = {
+    interface Props {
+      'as': string;
+      'data-testid': string;
+    }
+
+    const parameters: ConstructOptions<Props, Blank, void> = {
       classes: () => [],
       target: 'h1',
     };
@@ -68,8 +90,12 @@ describe('lib/construct', () => {
   });
 
   it('should successfully forward and update react refs', () => {
+    interface Props {
+      ref: RefObject<Element>;
+    }
+
     const ref = createRef<Element>();
-    const parameters: ConstructOptions<{ ref: RefObject<Element> }, Blank> = {
+    const parameters: ConstructOptions<Props, Blank, void> = {
       classes: () => [],
       target: 'h1',
     };
@@ -82,7 +108,11 @@ describe('lib/construct', () => {
   });
 
   it('should extend any additional `className` value provided via props', () => {
-    const parameters: ConstructOptions<{ className: string }, Blank> = {
+    interface Props {
+      className: string;
+    }
+
+    const parameters: ConstructOptions<Props, Blank, void> = {
       classes: () => ['text-black'],
       target: 'h1',
     };
@@ -93,7 +123,11 @@ describe('lib/construct', () => {
   });
 
   it('should extend any additional `className` value provided via attrs', () => {
-    const parameters: ConstructOptions<Blank, { className: string }> = {
+    interface Attrs {
+      className: string;
+    }
+
+    const parameters: ConstructOptions<Blank, Attrs, void> = {
       attrs: { className: 'custom-class' },
       classes: () => ['text-black'],
       target: 'h1',
@@ -105,7 +139,7 @@ describe('lib/construct', () => {
   });
 
   it('should render an extended component', () => {
-    const parameters: ConstructOptions<Blank, Blank> = {
+    const parameters: ConstructOptions<Blank, Blank, void> = {
       classes: () => ['text-black'],
       target: 'h1',
     };
@@ -123,7 +157,11 @@ describe('lib/construct', () => {
       return createElement('button', { className, disabled: true }, 'click me');
     };
 
-    const parameters: ConstructOptions<{ className: string }, Blank> = {
+    interface Props {
+      className: string;
+    }
+
+    const parameters: ConstructOptions<Props, Blank, void> = {
       classes: () => ['text-black'],
       target: button,
     };
@@ -135,7 +173,12 @@ describe('lib/construct', () => {
   });
 
   it('should update conditional classes when props update', () => {
-    const parameters: ConstructOptions<{ isEnabled: boolean; onClick: () => void }, Blank> = {
+    interface Props {
+      isEnabled: boolean;
+      onClick: () => void;
+    }
+
+    const parameters: ConstructOptions<Props, Blank, void> = {
       classes: (conditional) => [conditional('underline', ({ isEnabled }) => isEnabled)],
       target: 'button',
     };
