@@ -22,7 +22,7 @@
     "@tailwind-compose/prettier-config": "*",
     "@tailwind-compose/typescript-config": "*",
     "@types/node": "18.11.9",
-    "@types/react": "18.0.24",
+    "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
     "autoprefixer": "10.4.13",
     "eslint": "8.26.0",
