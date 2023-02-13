@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@tailwind-compose/integration-components": "*",
-    "gatsby": "4.24.7",
+    "gatsby": "5.6.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "tailwind-compose": "*"
