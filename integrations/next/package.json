@@ -23,7 +23,7 @@
     "@tailwind-compose/typescript-config": "*",
     "@types/node": "18.15.9",
     "@types/react": "18.0.29",
-    "@types/react-dom": "18.0.10",
+    "@types/react-dom": "18.0.11",
     "autoprefixer": "10.4.14",
     "eslint": "8.36.0",
     "postcss": "8.4.21",
