@@ -38,7 +38,7 @@ export type WithAttrs = {
 };
 
 export type WithTagAttrs = {
-  [key in typeof tags[number]]: StyledTagCompose & {
+  [key in (typeof tags)[number]]: StyledTagCompose & {
     attrs: <A extends Attrs>(attrs: A) => StyledTagCompose;
   };
 };
