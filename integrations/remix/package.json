@@ -20,7 +20,7 @@
     "tailwind-compose": "*"
   },
   "devDependencies": {
-    "@remix-run/dev": "1.12.0",
+    "@remix-run/dev": "1.14.3",
     "@remix-run/eslint-config": "1.13.0",
     "@tailwind-compose/eslint-config": "*",
     "@tailwind-compose/prettier-config": "*",
