@@ -8,8 +8,7 @@ updates:
       prefix-development: chore
     directory: '/'
     schedule:
-      day: 'monday'
-      interval: 'weekly'
+      interval: 'monthly'
       time: '06:00'
 
   - package-ecosystem: 'npm'
@@ -19,6 +18,5 @@ updates:
       prefix-development: chore
     directory: '/'
     schedule:
-      day: 'monday'
-      interval: 'weekly'
+      interval: 'monthly'
       time: '06:00'
