@@ -1,22 +1,22 @@
 version: 2
 
 updates:
-  - package-ecosystem: 'github-actions'
+  - package-ecosystem: github-actions
     commit-message:
       include: scope
       prefix: build
       prefix-development: chore
-    directory: '/'
+    directory: /
     schedule:
-      interval: 'monthly'
-      time: '06:00'
+      interval: monthly
+      time: 06:00
 
-  - package-ecosystem: 'npm'
+  - package-ecosystem: npm
     commit-message:
       include: scope
       prefix: build
       prefix-development: chore
-    directory: '/'
+    directory: /
     schedule:
-      interval: 'monthly'
-      time: '06:00'
+      interval: monthly
+      time: 06:00
