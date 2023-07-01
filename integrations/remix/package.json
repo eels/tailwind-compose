@@ -25,7 +25,7 @@
     "@tailwind-compose/eslint-config": "*",
     "@tailwind-compose/prettier-config": "*",
     "@tailwind-compose/typescript-config": "*",
-    "@types/react": "18.2.0",
+    "@types/react": "18.2.14",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "concurrently": "8.0.1",
