@@ -198,4 +198,13 @@ describe('lib/construct', () => {
 
     expect(screen.getByRole('button')).toHaveClass('underline');
   });
+
+  it('should output the class list from the consstructed element', () => {
+    const parameters: ConstructOptions<Blank, Blank, void> = {
+      classes: () => ['text-black'],
+      target: 'h1',
+    };
+
+    expect(construct(parameters).toClass()).toEqual('text-black');
+  });
 });
