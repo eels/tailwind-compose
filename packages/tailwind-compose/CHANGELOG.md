@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.8.0](https://github.com/eels/tailwind-compose/compare/v0.7.1...v0.8.0) - 2023-07-21
+
+### Commits
+
+- build(deps): bump @remix-run/node from 1.11.1 to 1.14.1 [`3aba908`](https://github.com/eels/tailwind-compose/commit/3aba908ab4bc0e768cfa3cef8f2d861f81cbecd9)
+- build(deps): bump @remix-run/node from 1.14.1 to 1.14.3 [`3b1db3f`](https://github.com/eels/tailwind-compose/commit/3b1db3f0c08afc01c731bbfdaeffe8ab34eca1d6)
+- build(deps): bump @remix-run/node from 1.14.3 to 1.15.0 [`44f8fde`](https://github.com/eels/tailwind-compose/commit/44f8fde4510739d258f0520f0d47fed360645b6d)
+- build(deps): bump @remix-run/node from 1.7.2 to 1.7.3 [`a1f456c`](https://github.com/eels/tailwind-compose/commit/a1f456c5e42f761bee5fcba70d6f3079a1e3c4de)
+- build(deps): bump @remix-run/node from 1.7.3 to 1.7.4 [`67c28c3`](https://github.com/eels/tailwind-compose/commit/67c28c3c287a7c61500631312c121d7db78f96f2)
+- build(deps): bump @remix-run/node from 1.7.4 to 1.7.5 [`c3792d9`](https://github.com/eels/tailwind-compose/commit/c3792d9524e8cd7ba3b4fb0f12f8c113bcbcc2b8)
+- build(deps): bump @remix-run/node from 1.7.5 to 1.8.0 [`36d6410`](https://github.com/eels/tailwind-compose/commit/36d6410a4030a414aa2beedeed7b7bc3fe23e3a8)
+- build(deps): bump @remix-run/node from 1.8.0 to 1.8.2 [`4fbda12`](https://github.com/eels/tailwind-compose/commit/4fbda12a8dbbec8d2e4eab2e36f548c925bd6f88)
+- build(deps): bump @remix-run/node from 1.8.2 to 1.9.0 [`3f7f20d`](https://github.com/eels/tailwind-compose/commit/3f7f20d32d91143041f3a1234e35095ca9c9ec94)
+- build(deps): bump @remix-run/node from 1.9.0 to 1.11.1 [`7fe4125`](https://github.com/eels/tailwind-compose/commit/7fe4125a0ae123736dad28c7b26adb3103bb7c8b)
+
 ## [v0.7.1](https://github.com/eels/tailwind-compose/compare/v0.7.0...v0.7.1) - 2022-10-10
 
 ### Commits
