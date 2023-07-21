@@ -8,7 +8,7 @@
   "repository": "https://github.com/eels/tailwind-compose",
   "bugs": "https://github.com/eels/tailwind-compose/issues",
   "license": "MIT",
-  "typings": "./types/index.d.ts",
+  "typings": "./tailwind-compose.d.ts",
   "sideEffects": false,
   "main": "./dist/tailwind-compose.cjs",
   "module": "./dist/tailwind-compose.module.js",
@@ -39,12 +39,12 @@
   ],
   "files": [
     "dist/",
-    "types/index.d.ts",
-    "types/react.ts",
-    "types/tags.ts",
+    "types/",
     "LICENSE.md",
+    "README.md",
+    "element-attributes.d.ts",
     "package.json",
-    "README.md"
+    "tailwind-compose.d.ts"
   ],
   "keywords": [
     "react",

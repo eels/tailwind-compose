@@ -3,10 +3,10 @@ import { createElement, forwardRef } from 'react';
 import { generateClassesArray } from '@src/utilities/generate-classes-array';
 import { generateDisplayName } from '@src/utilities/generate-display-name';
 import { isValidProp } from '@src/utilities/is-valid-prop';
-import type { Attrs, ClassName, ConstructOptions, Props } from '@types';
+import type { Attrs, ClassName, ConstructOptions as Options, Props } from '@types';
 import type { Ref } from 'react';
 
-export function construct<P extends Props, A extends Attrs, E>(options: ConstructOptions<P, A, E>) {
+export function construct<P extends Props, A extends Attrs, E>(options: Options<P, A, E>) {
   const { attrs = {} as A, classes, target } = options;
   const isTargetString = typeof target === 'string';
   const isTargetObject = typeof target === 'object';

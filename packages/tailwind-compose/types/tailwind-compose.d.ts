@@ -24,14 +24,9 @@ export type Component<P, E = void> = E extends void ? WithoutRef<P> : WithRef<P,
 
 export type Target<P, E> = string | ComponentType<P> | Component<P, E>;
 
-export type StyledCompose = <P extends Props, E = void>(
-  target: Target<P, E>,
-  classes: ComposerFn<P>,
-) => Component<P, E>;
+export type StyledCompose = <P extends Props, E = void>(target: Target<P, E>, classes: ComposerFn<P>) => Component<P, E>;
 
-export type StyledTagCompose = <P extends Props, E = void>(
-  classes: ComposerFn<P>,
-) => Component<P, E>;
+export type StyledTagCompose = <P extends Props, E = void>(classes: ComposerFn<P>) => Component<P, E>;
 
 export type WithAttrs = {
   attrs: <A extends Attrs>(attrs: A) => StyledCompose;
