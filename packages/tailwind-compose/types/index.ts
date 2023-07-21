@@ -1,1 +1,1 @@
-export * from './index.d';
+export * from './tailwind-compose.d';
