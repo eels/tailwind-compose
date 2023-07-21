@@ -40,10 +40,24 @@ export function construct<P extends Props, A extends Attrs, E>(options: Construc
       return createElement(element, propsToForward, children);
     }
 
-    Object.defineProperty(composed, 'name', { value: name });
+    Object.defineProperty(composed, 'name', {
+      value: name,
+    });
 
-    return forwardRef(composed);
+    const component = forwardRef(composed);
+
+    Object.defineProperty(component, 'toClass', {
+      value: () => {
+        const constructedProps = Object.assign<ClassName, A, P>({}, attrs, {} as P);
+        const componentClassNames = constructedProps.className;
+        const classArray = generateClassesArray(classes)(constructedProps);
+
+        return cc([...classArray, componentClassNames]);
+      },
+    });
+
+    return component;
   }
 
-  return wrapper();
+  return wrapper() as ReturnType<typeof wrapper> & { toClass: () => string };
 }

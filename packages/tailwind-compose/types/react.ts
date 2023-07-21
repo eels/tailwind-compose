@@ -1,5 +1,9 @@
 import type { ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 
-export type WithRef<P, E> = ForwardRefExoticComponent<P & RefAttributes<E>>;
+interface ComposedProperties {
+  toClass: () => string;
+}
 
-export type WithoutRef<P> = ForwardRefExoticComponent<PropsWithoutRef<P>>;
+export type WithRef<P, E> = ForwardRefExoticComponent<P & RefAttributes<E>> & ComposedProperties;
+
+export type WithoutRef<P> = ForwardRefExoticComponent<PropsWithoutRef<P>> & ComposedProperties;
