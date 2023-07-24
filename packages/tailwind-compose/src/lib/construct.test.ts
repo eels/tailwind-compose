@@ -8,7 +8,7 @@ type Blank = ExtendableObject<never>;
 
 describe('lib/construct', () => {
   it('should render a basic element', () => {
-    const parameters: ConstructOptions<Blank, Blank, void> = {
+    const parameters: ConstructOptions<Blank, Blank> = {
       classes: () => ['text-black'],
       target: 'h1',
     };
@@ -23,7 +23,7 @@ describe('lib/construct', () => {
       type: string;
     }
 
-    const parameters: ConstructOptions<Blank, Attrs, void> = {
+    const parameters: ConstructOptions<Blank, Attrs> = {
       attrs: { type: 'text' },
       classes: () => ['text-black'],
       target: 'input',
@@ -44,7 +44,7 @@ describe('lib/construct', () => {
       noneValidAttr: boolean;
     }
 
-    const parameters: ConstructOptions<Props, Attrs, void> = {
+    const parameters: ConstructOptions<Props, Attrs> = {
       attrs: { noneValidAttr: true },
       classes: () => ['text-black'],
       target: 'h1',
@@ -61,7 +61,7 @@ describe('lib/construct', () => {
       'data-testid': string;
     }
 
-    const parameters: ConstructOptions<Props, Blank, void> = {
+    const parameters: ConstructOptions<Props, Blank> = {
       classes: () => ['text-black'],
       target: 'h1',
     };
@@ -78,7 +78,7 @@ describe('lib/construct', () => {
       'data-testid': string;
     }
 
-    const parameters: ConstructOptions<Props, Blank, void> = {
+    const parameters: ConstructOptions<Props, Blank> = {
       classes: () => [],
       target: 'h1',
     };
@@ -95,7 +95,7 @@ describe('lib/construct', () => {
     }
 
     const ref = createRef<Element>();
-    const parameters: ConstructOptions<Props, Blank, void> = {
+    const parameters: ConstructOptions<Props, Blank> = {
       classes: () => [],
       target: 'h1',
     };
@@ -112,7 +112,7 @@ describe('lib/construct', () => {
       className: string;
     }
 
-    const parameters: ConstructOptions<Props, Blank, void> = {
+    const parameters: ConstructOptions<Props, Blank> = {
       classes: () => ['text-black'],
       target: 'h1',
     };
@@ -127,7 +127,7 @@ describe('lib/construct', () => {
       className: string;
     }
 
-    const parameters: ConstructOptions<Blank, Attrs, void> = {
+    const parameters: ConstructOptions<Blank, Attrs> = {
       attrs: { className: 'custom-class' },
       classes: () => ['text-black'],
       target: 'h1',
@@ -139,7 +139,7 @@ describe('lib/construct', () => {
   });
 
   it('should render an extended component', () => {
-    const parameters: ConstructOptions<Blank, Blank, void> = {
+    const parameters: ConstructOptions<Blank, Blank> = {
       classes: () => ['text-black'],
       target: 'h1',
     };
@@ -161,7 +161,7 @@ describe('lib/construct', () => {
       className: string;
     }
 
-    const parameters: ConstructOptions<Props, Blank, void> = {
+    const parameters: ConstructOptions<Props, Blank> = {
       classes: () => ['text-black'],
       target: button,
     };
@@ -178,7 +178,7 @@ describe('lib/construct', () => {
       onClick: () => void;
     }
 
-    const parameters: ConstructOptions<Props, Blank, void> = {
+    const parameters: ConstructOptions<Props, Blank> = {
       classes: (conditional) => [conditional('underline', ({ isEnabled }) => isEnabled)],
       target: 'button',
     };
@@ -199,12 +199,25 @@ describe('lib/construct', () => {
     expect(screen.getByRole('button')).toHaveClass('underline');
   });
 
-  it('should output the class list from the consstructed element', () => {
-    const parameters: ConstructOptions<Blank, Blank, void> = {
+  it('should output the constructed class string from the element', () => {
+    const parameters: ConstructOptions<Blank, Blank> = {
       classes: () => ['text-black'],
       target: 'h1',
     };
 
     expect(construct(parameters).toClass()).toEqual('text-black');
+  });
+
+  it('should output the constructed class string from the element with conditional classes', () => {
+    interface Props {
+      isUnderlined: boolean;
+    }
+
+    const parameters: ConstructOptions<Props, Blank> = {
+      classes: (conditional) => [conditional('underline', ({ isUnderlined }) => isUnderlined)],
+      target: 'h1',
+    };
+
+    expect(construct(parameters).toClass({ isUnderlined: true })).toEqual('underline');
   });
 });

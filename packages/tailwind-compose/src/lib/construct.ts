@@ -6,7 +6,7 @@ import { isValidProp } from '@src/utilities/is-valid-prop';
 import type { Attrs, ClassName, ConstructOptions as Options, Props } from '@types';
 import type { Ref } from 'react';
 
-export function construct<P extends Props, A extends Attrs, E>(options: Options<P, A, E>) {
+export function construct<P extends Props, A extends Attrs>(options: Options<P, A>) {
   const { attrs = {} as A, classes, target } = options;
   const isTargetString = typeof target === 'string';
   const isTargetObject = typeof target === 'object';
@@ -47,8 +47,8 @@ export function construct<P extends Props, A extends Attrs, E>(options: Options<
     const component = forwardRef(composed);
 
     Object.defineProperty(component, 'toClass', {
-      value: () => {
-        const constructedProps = Object.assign<ClassName, A, P>({}, attrs, {} as P);
+      value: (props: P) => {
+        const constructedProps = Object.assign<ClassName, A, P>({}, attrs, props);
         const componentClassNames = constructedProps.className;
         const classArray = generateClassesArray(classes)(constructedProps);
 
@@ -59,5 +59,5 @@ export function construct<P extends Props, A extends Attrs, E>(options: Options<
     return component;
   }
 
-  return wrapper() as ReturnType<typeof wrapper> & { toClass: () => string };
+  return wrapper() as ReturnType<typeof wrapper> & { toClass: (props?: P) => string };
 }

@@ -1,8 +1,8 @@
 import { construct } from '@src/lib/construct';
 import type { Attrs, ComposeFactory, ComposerFn, Props, Target } from '@types';
 
-const Compose = <P extends Props, E = void>(target: Target<P, E>, classes: ComposerFn<P>) => {
-  return construct<P, Record<string, unknown>, E>({
+const Compose = <P extends Props>(target: Target<P>, classes: ComposerFn<P>) => {
+  return construct<P, Record<string, unknown>>({
     classes,
     target,
   });
@@ -10,8 +10,8 @@ const Compose = <P extends Props, E = void>(target: Target<P, E>, classes: Compo
 
 Object.defineProperty(Compose, 'attrs', {
   value: <A extends Attrs>(attrs: A) => {
-    return <P extends Props, E = void>(target: Target<P, E>, classes: ComposerFn<P & A>) => {
-      return construct<P, A, E>({
+    return <P extends Props>(target: Target<P>, classes: ComposerFn<P & A>) => {
+      return construct<P, A>({
         attrs,
         classes,
         target,
@@ -26,20 +26,20 @@ const ComposeFactoryProxyInstance = new Proxy(Compose, {
       return Reflect.get(target, property);
     }
 
-    const ComposeTag = <P extends Props, E = void>(classes: ComposerFn<P>) => {
-      return construct<P, Record<string, unknown>, E>({
+    const ComposeTag = <P extends Props>(classes: ComposerFn<P>) => {
+      return construct<P, Record<string, unknown>>({
         classes,
-        target: property as Target<P, E>,
+        target: property as Target<P>,
       });
     };
 
     Object.defineProperty(ComposeTag, 'attrs', {
       value: <A extends Attrs>(attrs: A) => {
-        return <P extends Props, E = void>(classes: ComposerFn<P & A>) => {
-          return construct<P, A, E>({
+        return <P extends Props>(classes: ComposerFn<P & A>) => {
+          return construct<P, A>({
             attrs,
             classes,
-            target: property as Target<P, E>,
+            target: property as Target<P>,
           });
         };
       },
@@ -49,4 +49,4 @@ const ComposeFactoryProxyInstance = new Proxy(Compose, {
   },
 });
 
-export const compose = ComposeFactoryProxyInstance as ComposeFactory;
+export const compose = ComposeFactoryProxyInstance as unknown as ComposeFactory;
