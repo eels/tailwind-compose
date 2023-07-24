@@ -1,0 +1,31 @@
+name: Setup Base Workflow
+
+description: Base steps for all workflows
+
+runs:
+  using: composite
+
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        always-auth: true
+        node-version: [16.x]
+        registry-url: https://registry.npmjs.org
+
+    - name: Retrieve Yarn Cache Directory
+      shell: bash
+      run: |
+        echo YARN_CACHE_DIR="$(yarn cache dir)" >> $GITHUB_ENV
+
+    - name: Use Yarn Cache
+      uses: actions/cache@v3
+      with:
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        path: ${{ env.YARN_CACHE_DIR }}
+        restore-keys: ${{ runner.os }}-yarn-
+
+    - name: Install Dependencies
+      shell: bash
+      run: |
+        yarn install --ignore-scripts --prefer-offline

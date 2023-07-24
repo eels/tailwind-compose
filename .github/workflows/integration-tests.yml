@@ -1,6 +1,7 @@
 name: Integration Tests
 
-on: [push]
+on:
+  pull_request:
 
 jobs:
   test:
@@ -10,32 +11,17 @@ jobs:
     strategy:
       matrix:
         integration: [gatsby, next, remix]
-        node-version: [16.x]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+      - name: Setup
+        uses: ./.github/actions/setup-workflow
 
-      - name: Retrieve Yarn Cache Directory
-        id: yarn-cache
+      - name: Build
         run: |
-          echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Use Cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
-
-      - name: Install Dependencies
-        run: |
-          yarn install --prefer-offline
+          yarn workspace tailwind-compose clean
           yarn workspace tailwind-compose build
 
       - name: Run Integration Tests
