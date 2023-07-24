@@ -10,8 +10,8 @@ export type Props = ExtendableObject;
 
 export type Target<P> = string | Exclude<keyof JSX.IntrinsicElements, 'symbol' | 'object'> | React.ComponentType<P> | ComposedComponent<P>;
 
-export interface ComposedComponent<P> extends React.ForwardRefExoticComponent<P> {
-  defaultProps?: Partial<React.PropsWithoutRef<P>>;
+export interface ComposedComponent<P> extends React.ForwardRefExoticComponent<ExecutionProps & P> {
+  defaultProps?: ExecutionProps & Partial<React.PropsWithoutRef<P>>;
   toClass: (props?: P) => string;
   toString: () => string;
 }
@@ -63,6 +63,10 @@ export interface ConstructOptions<P, A> {
   attrs?: A;
   classes: ComposerFn<P & A>;
   target: Target<P>;
+}
+
+export interface ExecutionProps {
+  as?: keyof JSX.IntrinsicElements | React.ComponentType;
 }
 
 export interface ClassName {
