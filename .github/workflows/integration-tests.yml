@@ -26,4 +26,5 @@ jobs:
 
       - name: Run Integration Tests
         run: |
+          yarn cypress install
           yarn e2e:${{ matrix.integration }}
