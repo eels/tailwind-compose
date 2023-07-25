@@ -32,7 +32,7 @@ export const BasicEmailField = compose.attrs({ type: 'email' })('input', () => [
 
 // --- Basic Component w/ attrs via property ----
 
-export const BasicEmailFieldProperty = compose.input.attrs({ type: 'button' })(() => [
+export const BasicEmailFieldProperty = compose.input.attrs({ type: 'email' })(() => [
   'border', //
   'border-red-800',
   'block',
