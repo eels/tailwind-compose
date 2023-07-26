@@ -23,6 +23,7 @@
 
 - [Example](#example)
 - [Conditional Styles / Component Variants](#conditional-styles--component-variants)
+  - [Transient Props](#transient-props)
 - [Extending Components](#extending-components)
 - [Using `as`](#using-as)
 - [Using `attrs`](#using-attrs)
@@ -136,6 +137,12 @@ const Button = compose.button((conditional) => [
 <Button $isSecondary />
 // outputs <button class="bg-blue-500 text-blue-50">
 ```
+
+### Transient Props
+
+To prevent props that are only meant to be consumed by your composed components from being passed to the underlying React node or rendered to the DOM element, you can prefix them with a dollar sign (`$`), turning it into a transient prop.
+
+In the above example, `$isSecondary` is not rendered to the final DOM element.
 
 ## Extending Components
 
