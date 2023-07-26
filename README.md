@@ -26,6 +26,8 @@
 - [Extending Components](#extending-components)
 - [Using `as`](#using-as)
 - [Using `attrs`](#using-attrs)
+- [`tailwind-compose` Without Tailwind CSS](#tailwind-compose-without-tailwind-cSS)
+- [No React? No Problem!](#no-react-no-problem)
 - [TypeScript Support](#typescript-support)
 - [Tailwind CSS Intellisense](#tailwind-css-intellisense)
   - [Visual Studio Code](#visual-studio-code)
@@ -207,6 +209,43 @@ const TextField = compose.input.attrs({ type: 'text' })(() => [ ... ]);
 ```jsx
 // For extended components, you can define attributes in the same way
 const EmailField = styled.attrs({ type: 'email' })(TextField, () => [ ... ]);
+```
+
+## `tailwind-compose` Without Tailwind CSS
+
+Despite the name, `tailwind-compose` can be used without Tailwind CSS entirely. At its core, `tailwind-compose` is just a string concatenation library meaning you can use any utility-first CSS framework of choice, or even just using your own classes entirely!
+
+```jsx
+import styles from './styles.css';
+
+const Button = compose.button(() => [
+  styles.button,
+  'our-custom-class',
+  'whatever-you-want-to-concatenate'
+]);
+
+<Button />
+// outputs <button class="button_1234567890 our-custom-class whatever-you-want-to-concatenate">
+```
+
+## No React? No Problem!
+
+While primarily designed to be used within React-based projects, `tailwind-compose` also exports its underlying string concatenation functionality as a standalone method. This means you can bring `tailwind-compose` into projects of all flavours and retain all of its great features.
+
+```jsx
+import { classnames } from 'tailwind-compose';
+
+const button = classnames((conditional) => [
+  'bg-red-500',
+  'text-red-50',
+  conditional('text-xl', ({ isLarge }) => isLarge),
+]);
+
+button();
+// outputs "bg-red-500 text-red-50"
+
+button({ isLarge: true });
+// outputs "bg-red-500 text-red-50 text-xl"
 ```
 
 ## TypeScript Support
