@@ -22,6 +22,8 @@
 ## Contents
 
 - [Example](#example)
+- [Extending Components](#extending-components)
+- [Using `as`](#using-as)
 - [Using `attrs`](#using-attrs)
 - [TypeScript Support](#typescript-support)
 - [Tailwind CSS Intellisense](#tailwind-css-intellisense)
@@ -30,8 +32,8 @@
   - [WebStorm](#webstorm)
 - [API Reference](#api-reference)
   - [compose](#compose)
-  - [compose.attrs](#compose.attrs)
-  - [compose.toString](#compose.tostring)
+  - [compose.attrs](#composeattrs)
+  - [compose.toClass](#composetoclass)
   - [classnames](#classnames)
   - [composer](#composer)
   - [conditional](#conditional)
@@ -82,6 +84,60 @@ This is what you'll see in your browser:
 ![Tailwind Compose example usage](https://github.com/eels/tailwind-compose/assets/86960670/08c785a7-20cb-4200-a585-4185b0de405e)
 
 [Open in CodeSandbox](https://codesandbox.io/p/sandbox/distracted-framework-q9m9ks?file=%2Fsrc%2Fcomponents%2Fapplication.jsx%3A14%2C15)
+
+## Extending Components
+
+As you start to build out your component library, you may wish to use a component but slightly change or build upon its styling. While you could use conditional classes and props to do this, depending on how many alterations you  make this could quickly become unmaintainable.
+
+To simplify the process, you can just extend an existing composed component and supply it with a list of additional classes you wish to attach resulting in a new component that is the best of both worlds.
+
+```jsx
+const Button = compose.button(() => [
+  'bg-red-500',
+  'text-red-50',
+]);
+// outputs <button class="bg-red-500 text-red-50">
+
+const BorderedButton = compose(Button, () => [
+  'border',
+  'border-red-700'
+]);
+// outputs <button class="bg-red-500 text-red-50 border border-red-700">
+```
+
+This also works for custom components as long as they pass the `className` prop to a DOM element.
+
+```jsx
+function CustomButton({ children, className }) {
+  return <button className={className}>{children}</button>;
+}
+
+const ComposedCustomButton = composed(CustomButton, () => [
+  'bg-red-500',
+  'text-red-50',
+]);
+
+<ComposedCustomButton />
+// outputs <button class="bg-red-500 text-red-50">
+```
+
+You can also pass extra classes to individual component instances at runtime via the `className` prop.
+
+```jsx
+<Button className='border border-red-700' />
+// outputs <button class="bg-red-500 text-red-50 border border-red-700">
+```
+
+## Using `as`
+
+All composed components are polymorphic, meaning you are able to alter the way they render after they have been created by utilising the `as` prop. This keeps all the styling that has been applied to a component but just switches out what is ultimately being rendered (be it a different HTML element or a different custom component).
+
+```jsx
+const Button = composed.button(() => [ ... ]);
+
+// This component will render as a `div` element instead of a `button`
+<Button as='div' />
+```
 
 ## Using `attrs`
 
@@ -275,8 +331,8 @@ const Component = compose(element, composer);
 const Component = compose.div(composer);
 
 /**
- * Create a composed classlist from an existing component
- * @param   {object} props
+ * Create a composed classlist from an existing composed component
+ * @param   {object=} props
  * @returns {string}
  */
 const classlist = Component.toClass(props);
