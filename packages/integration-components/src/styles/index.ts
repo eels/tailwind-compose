@@ -64,7 +64,7 @@ export const CondButtonArray = compose.button((conditional) => [
   'bg-red-800', //
   'block',
   'mb-4',
-  conditional(['text-white', 'bg-black'], ({ isActive }) => isActive),
+  conditional(['text-white', 'bg-black'], ({ $isActive }) => $isActive),
 ]);
 
 // --- Basic ClassNames -------------------------
@@ -80,7 +80,7 @@ export const CondClassNamesButtonString = classnames((conditional) => [
   'bg-red-400', //
   'block',
   'mb-4',
-  conditional('text-white', ({ isActive }) => isActive),
+  conditional('text-white', ({ $isActive }) => $isActive),
 ]);
 
 // --- Conditional ClassNames as array ----------
@@ -89,14 +89,14 @@ export const CondClassNamesButtonArray = classnames((conditional) => [
   'bg-red-800', //
   'block',
   'mb-4',
-  conditional(['text-white', 'bg-black'], ({ isActive }) => isActive),
+  conditional(['text-white', 'bg-black'], ({ $isActive }) => $isActive),
 ]);
 
 // --- Typescript type tests --------------------
 
 interface ExampleProps {
+  $isTestProp: boolean;
   className?: string;
-  isTestProp: boolean;
 }
 
 interface WebComponent {
@@ -114,7 +114,7 @@ const ExampleComponentD = compose(MockComponent, () => []);
 const ExampleComponentE = compose.input<ExampleProps>(() => []);
 const ExampleComponentF = compose.input.attrs({ type: 'text' })(() => []);
 
-const ExampleComponentZ = ExampleComponentA.toClass({ isTestProp: true });
+const ExampleComponentZ = ExampleComponentA.toClass({ $isTestProp: true });
 
 (() => [
   ExampleComponentA,

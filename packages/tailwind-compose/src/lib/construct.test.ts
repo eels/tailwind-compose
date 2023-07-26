@@ -37,20 +37,20 @@ describe('lib/construct', () => {
 
   it('should render a basic element without passing non-valid props as attributes', () => {
     interface Props {
-      noneValidProp: boolean;
+      $noneValidProp: boolean;
     }
 
     interface Attrs {
-      noneValidAttr: boolean;
+      $noneValidAttr: boolean;
     }
 
     const parameters: ConstructOptions<Props, Attrs> = {
-      attrs: { noneValidAttr: true },
+      attrs: { $noneValidAttr: true },
       classes: () => ['text-black'],
       target: 'h1',
     };
 
-    render(createElement(construct(parameters), { noneValidProp: true }));
+    render(createElement(construct(parameters), { $noneValidProp: true }));
     expect(screen.getByRole('heading')).not.toHaveAttribute('noneValidProp');
     expect(screen.getByRole('heading')).not.toHaveAttribute('noneValidAttr');
   });
@@ -174,12 +174,12 @@ describe('lib/construct', () => {
 
   it('should update conditional classes when props update', () => {
     interface Props {
-      isEnabled: boolean;
+      $isEnabled: boolean;
       onClick: () => void;
     }
 
     const parameters: ConstructOptions<Props, Blank> = {
-      classes: (conditional) => [conditional('underline', ({ isEnabled }) => isEnabled)],
+      classes: (conditional) => [conditional('underline', ({ $isEnabled }) => $isEnabled)],
       target: 'button',
     };
 
@@ -187,7 +187,10 @@ describe('lib/construct', () => {
       const [isEnabled, setIsEnabled] = useState(false);
       const handleOnClick = () => setIsEnabled((state) => !state);
 
-      return createElement(construct(parameters), { isEnabled, onClick: handleOnClick });
+      return createElement(construct(parameters), {
+        $isEnabled: isEnabled,
+        onClick: handleOnClick,
+      });
     };
 
     render(createElement(Wrapper));
@@ -210,14 +213,14 @@ describe('lib/construct', () => {
 
   it('should output the constructed class string from the element with conditional classes', () => {
     interface Props {
-      isUnderlined: boolean;
+      $isUnderlined: boolean;
     }
 
     const parameters: ConstructOptions<Props, Blank> = {
-      classes: (conditional) => [conditional('underline', ({ isUnderlined }) => isUnderlined)],
+      classes: (conditional) => [conditional('underline', ({ $isUnderlined }) => $isUnderlined)],
       target: 'h1',
     };
 
-    expect(construct(parameters).toClass({ isUnderlined: true })).toEqual('underline');
+    expect(construct(parameters).toClass({ $isUnderlined: true })).toEqual('underline');
   });
 });
