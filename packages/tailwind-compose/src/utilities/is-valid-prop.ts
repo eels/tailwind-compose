@@ -1,3 +1,3 @@
 export function isValidProp(prop: string) {
-  return !prop.startsWith('$');
+  return !prop.startsWith('$') && prop !== 'as';
 }
