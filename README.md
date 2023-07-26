@@ -23,6 +23,7 @@
 
 - [Example](#example)
 - [Conditional Styles / Component Variants](#conditional-styles--component-variants)
+  - [Transient Props](#transient-props)
 - [Extending Components](#extending-components)
 - [Using `as`](#using-as)
 - [Using `attrs`](#using-attrs)
@@ -100,13 +101,13 @@ See the [conditional](#conditional) API Reference for more details.
 const Button = compose.button((conditional) => [
   'bg-red-500',
   'text-red-50',
-  conditional('text-xl', ({ isLarge }) => isLarge),
+  conditional('text-xl', ({ $isLarge }) => $isLarge),
 ]);
 
 <Button />
 // outputs <button class="bg-red-500 text-red-50">
 
-<Button isLarge />
+<Button $isLarge />
 // outputs <button class="bg-red-500 text-red-50 text-xl">
 ```
 
@@ -119,23 +120,29 @@ const Button = compose.button((conditional) => [
       'bg-red-500',
       'text-red-50',
     ],
-    ({ isSecondary }) => !isSecondary
+    ({ $isSecondary }) => !$isSecondary
   ),
   conditional(
     [
       'bg-blue-500',
       'text-blue-50',
     ],
-    ({ isSecondary }) => isSecondary
+    ({ $isSecondary }) => $isSecondary
   ),
 ]);
 
 <Button />
 // outputs <button class="bg-red-500 text-red-50">
 
-<Button isSecondary />
+<Button $isSecondary />
 // outputs <button class="bg-blue-500 text-blue-50">
 ```
+
+### Transient Props
+
+To prevent props that are only meant to be consumed by your composed components from being passed to the underlying React node or rendered to the DOM element, you can prefix them with a dollar sign (`$`), turning it into a transient prop.
+
+In the above example, `$isSecondary` is not rendered to the final DOM element.
 
 ## Extending Components
 
@@ -270,7 +277,7 @@ If you want to ensure that any custom props are type-safe, you can pass your Typ
 
 ```jsx
 interface ButtonProps {
-  size: 'small' | 'large';
+  $size: 'small' | 'large';
 }
 
 const Button = compose.button<ButtonProps>(() => [ ... ]);
@@ -281,7 +288,7 @@ const Button = compose<'button', ButtonProps>('button', () => [ ... ]);
 <Button />
 
 // Life in beautiful type-safe harmony
-<Button size='small' />
+<Button $size='small' />
 ```
 
 Additionally, extended components have their types transferred to your newly created composed variant.

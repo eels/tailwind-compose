@@ -1,17 +1,21 @@
 {
   "name": "@tailwind-compose/monorepo",
   "private": true,
+  "version": "1.0.0",
   "author": "Liam Howell <liam@liam.codes>",
   "homepage": "https://github.com/eels/tailwind-compose#readme",
   "repository": "https://github.com/eels/tailwind-compose",
   "bugs": "https://github.com/eels/tailwind-compose/issues",
   "license": "MIT",
+  "packageManager": "yarn@1.22.19",
   "workspaces": [
     "configs/*",
     "integrations/*",
     "packages/*"
   ],
   "scripts": {
+    "clean:artifacts": "yarn rimraf \"**/tsconfig.tsbuildinfo\"",
+    "clean:dependencies": "yarn rimraf \"**/node_modules/\"",
     "cypress:run": "cypress run",
     "e2e:gatsby": "start-server-and-test integrations:next 3000 cypress:run",
     "e2e:next": "start-server-and-test integrations:next 3000 cypress:run",
@@ -19,7 +23,8 @@
     "integrations:gatsby": "yarn workspace @tailwind-compose/integration-gatsby dev",
     "integrations:next": "yarn workspace @tailwind-compose/integration-next dev",
     "integrations:remix": "yarn workspace @tailwind-compose/integration-remix dev",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "sync:dependencies": "syncpack list-mismatches"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
@@ -29,7 +34,8 @@
     "cypress": "^12.9.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "start-server-and-test": "^2.0.0"
+    "rimraf": "^4.4.1",
+    "start-server-and-test": "^2.0.0",
+    "syncpack": "^10.7.3"
   }
 }

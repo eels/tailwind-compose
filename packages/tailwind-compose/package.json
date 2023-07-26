@@ -42,7 +42,6 @@
     "types/",
     "LICENSE.md",
     "README.md",
-    "element-attributes.d.ts",
     "package.json",
     "tailwind-compose.d.ts"
   ],
@@ -50,10 +49,6 @@
     "react",
     "tailwind"
   ],
-  "dependencies": {
-    "html-attributes": "^1.1.0",
-    "svg-attributes": "^1.0.0"
-  },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
@@ -76,14 +71,11 @@
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "auto-changelog": "^2.4.0",
-    "eslint": "^8.22.0",
     "jest": "^29.1.2",
     "jest-environment-jsdom": "^29.1.2",
     "microbundle": "^0.15.0",
-    "prettier": "^2.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "rimraf": "^4.4.1",
-    "typescript": "^5.0.2"
+    "rimraf": "^4.4.1"
   }
 }

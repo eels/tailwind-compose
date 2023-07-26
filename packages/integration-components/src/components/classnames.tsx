@@ -22,8 +22,8 @@ export function ClassnamesComponents() {
 
       {/* Conditional ClassNames as string */}
       <button
+        className={Composed.CondClassNamesButtonString({ $isActive: strBtnEnabled })}
         data-cy='conditional-classnames-button-string'
-        className={Composed.CondClassNamesButtonString({ isActive: strBtnEnabled })}
         onClick={handleSetStrBtnEnabled}
       >
         Conditional ClassNames as string Component Button
@@ -31,8 +31,8 @@ export function ClassnamesComponents() {
 
       {/* Conditional ClassNames as array */}
       <button
+        className={Composed.CondClassNamesButtonArray({ $isActive: arrBtnEnabled })}
         data-cy='conditional-classnames-button-array'
-        className={Composed.CondClassNamesButtonArray({ isActive: arrBtnEnabled })}
         onClick={handleSetArrBtnEnabled}
       >
         Conditional ClassNames as array Component Button

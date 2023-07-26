@@ -37,12 +37,12 @@ export function ComposeComponents() {
       <Composed.BasicEmailFieldProperty data-cy='basic-email-field-property' />
 
       {/* Basic Component w/ as string prop */}
-      <Composed.BasicButton data-cy='basic-button-as-string' as='div'>
+      <Composed.BasicButton as='div' data-cy='basic-button-as-string'>
         Basic Component w/ as string prop
       </Composed.BasicButton>
 
       {/* Basic Component w/ as component prop */}
-      <Composed.BasicButton data-cy='basic-button-as-component' as={Composed.BasicHeadline}>
+      <Composed.BasicButton as={Composed.BasicHeadline} data-cy='basic-button-as-component'>
         Basic Component w/ as component prop
       </Composed.BasicButton>
 
@@ -53,8 +53,8 @@ export function ComposeComponents() {
 
       {/* Conditional Class as string Component */}
       <Composed.CondButtonString
+        $isActive={strBtnEnabled}
         data-cy='conditional-button-string'
-        isActive={strBtnEnabled}
         onClick={handleSetStrBtnEnabled}
       >
         Conditional Class as string Component Button
@@ -62,8 +62,8 @@ export function ComposeComponents() {
 
       {/* Conditional Class as array Component */}
       <Composed.CondButtonArray
+        $isActive={arrBtnEnabled}
         data-cy='conditional-button-array'
-        isActive={arrBtnEnabled}
         onClick={handleSetArrBtnEnabled}
       >
         Conditional Class as array Component Button
