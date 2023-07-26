@@ -22,12 +22,20 @@
 ## Contents
 
 - [Example](#example)
+- [Using `attrs`](#using-attrs)
 - [TypeScript Support](#typescript-support)
 - [Tailwind CSS Intellisense](#tailwind-css-intellisense)
   - [Visual Studio Code](#visual-studio-code)
   - [Neovim](#neovim)
   - [WebStorm](#webstorm)
 - [API Reference](#api-reference)
+  - [compose](#compose)
+  - [compose.attrs](#compose.attrs)
+  - [compose.toString](#compose.tostring)
+  - [classnames](#classnames)
+  - [composer](#composer)
+  - [conditional](#conditional)
+  - [condition](#condition)
 - [Browser Support](#browser-support)
 - [Badge](#badge)
 - [Contributing](#contributing)
@@ -74,6 +82,26 @@ This is what you'll see in your browser:
 ![Tailwind Compose example usage](https://github.com/eels/tailwind-compose/assets/86960670/08c785a7-20cb-4200-a585-4185b0de405e)
 
 [Open in CodeSandbox](https://codesandbox.io/p/sandbox/distracted-framework-q9m9ks?file=%2Fsrc%2Fcomponents%2Fapplication.jsx%3A14%2C15)
+
+## Using `attrs`
+
+Occasionally you may know ahead of time if your component will always use the same static prop values, such as an input element having a set `type` property. By using the `attrs` method you can implicitly set any static prop values that should be passed down to every instance of your component.
+
+```jsx
+const TextField = composed.input.attrs({ type: 'text' })(() => [ ... ]);
+
+// This will render with the `type` attribute implicitly set
+// from the original declaration
+<TextField />
+
+// You can also locally override any attributes that are defined above
+<TextField type='email' />
+```
+
+```jsx
+// For extended components, you can define attributes in the same way
+const EmailField = styled.attrs({ type: 'email' })(TextField, () => [ ... ]);
+```
 
 ## TypeScript Support
 
@@ -199,7 +227,7 @@ lspconfig.tailwindcss.setup({
 
 ```jsx
 /**
- *
+ * Create a composed component from a variable target
  * @param   {string | ComposedComponent | React.ComponentType} element
  * @param   {composer} composer
  * @returns {ComposedComponent}
@@ -209,18 +237,56 @@ const Component = compose(element, composer);
 
 ```jsx
 /**
- *
+ * Create a composed component from a set element
  * @param   {composer} composer
  * @returns {ComposedComponent}
  */
 const Component = compose.div(composer);
 ```
 
+#### `compose.attrs`
+
+```jsx
+/**
+ * Create a composed component from a variable target w/ defined static attributes
+ * @param   {object} attributes
+ * @param   {string | ComposedComponent | React.ComponentType} element
+ * @param   {composer} composer
+ * @returns {ComposedComponent}
+ */
+const Component = compose.attrs(attributes)(element, composer);
+```
+
+```jsx
+/**
+ * Create a composed component from a set element w/ defined static attributes
+ * @param   {object} attributes
+ * @param   {composer} composer
+ * @returns {ComposedComponent}
+ */
+const Component = compose.div.attrs(attributes)(composer);
+```
+
+#### `compose.toClass`
+
+```jsx
+const Component = compose(element, composer);
+// OR
+const Component = compose.div(composer);
+
+/**
+ * Create a composed classlist from an existing component
+ * @param   {object} props
+ * @returns {string}
+ */
+const classlist = Component.toClass(props);
+```
+
 #### `classnames`
 
 ```jsx
 /**
- *
+ * Create a composed classlist
  * @param   {composer} composer
  * @returns {string}
  */
@@ -233,7 +299,7 @@ const Component = classnames(composer);
 
 ```jsx
 /**
- *
+ * Callback to create a composed classlist
  * @callback composer
  * @param    {conditional=} conditional
  * @returns  {string[]}
@@ -245,19 +311,19 @@ const composer = (conditional) => classes;
 
 ```jsx
 /**
- *
+ * Syntactic sugar to compose a conditional classlist tuple
  * @param    {string | string[]} target
  * @param    {condition} condition
  * @returns  {[string | string[], condition]}
  */
-conditional(target, condition);
+const conditional = conditional(target, condition);
 ```
 
 #### `condition`
 
 ```jsx
 /**
- *
+ * Callback to evaluate whether a given condition is truthy
  * @callback condition
  * @param    {object=} props
  * @returns  {boolean}
