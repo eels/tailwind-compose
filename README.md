@@ -22,6 +22,7 @@
 ## Contents
 
 - [Example](#example)
+- [Conditional Styles / Component Variants](#conditional-styles--component-variants)
 - [Extending Components](#extending-components)
 - [Using `as`](#using-as)
 - [Using `attrs`](#using-attrs)
@@ -54,19 +55,19 @@ import { compose } from 'tailwind-compose';
 // Create a <Wrapper> React component that implements the following
 // Tailwind CSS classes and renders as a <section> html element
 const Wrapper = compose.section(() => [
-  "bg-orange-100",
-  "p-16",
+  'bg-orange-100',
+  'p-16',
 ]);
 
 // Create a <Title> React component that implements the following
 // Tailwind CSS classes and renders as a <h1> html element
 const Title = compose.h1(() => [
-  "text-center",
-  "text-2xl",
-  "text-rose-400",
-  "font-serif",
-  "font-bold",
-  "my-4",
+  'text-center',
+  'text-2xl',
+  'text-rose-400',
+  'font-serif',
+  'font-bold',
+  'my-4',
 ]);
 
 // Use them like regular React components – except they're styled!
@@ -84,6 +85,55 @@ This is what you'll see in your browser:
 ![Tailwind Compose example usage](https://github.com/eels/tailwind-compose/assets/86960670/08c785a7-20cb-4200-a585-4185b0de405e)
 
 [Open in CodeSandbox](https://codesandbox.io/p/sandbox/distracted-framework-q9m9ks?file=%2Fsrc%2Fcomponents%2Fapplication.jsx%3A14%2C15)
+
+## Conditional Styles / Component Variants
+
+When creating your composed components, you may have the need to apply certain classes only when the component has a specific prop state. To achieve this, the composer callback accepts a function as its only argument (named here `conditional`) that takes both a class and a callback that must return a value that evaluates to either `true` or `false` based on the components available props.
+
+If the expression is `true` to class is added, if it is `false` it is not. Simple!
+
+See the [conditional](#conditional) API Reference for more details.
+
+```jsx
+const Button = compose.button((conditional) => [
+  'bg-red-500',
+  'text-red-50',
+  conditional('text-xl', ({ isLarge }) => isLarge),
+]);
+
+<Button />
+// outputs <button class="bg-red-500 text-red-50">
+
+<Button isLarge />
+// outputs <button class="bg-red-500 text-red-50 text-xl">
+```
+
+The `conditional` function can also instead take an array of classes, which can be combined with other `conditional` definitions to build up a series of variant states that your component can take on.
+
+```jsx
+const Button = compose.button((conditional) => [
+  conditional(
+    [
+      'bg-red-500',
+      'text-red-50',
+    ],
+    ({ isSecondary }) => !isSecondary
+  ),
+  conditional(
+    [
+      'bg-blue-500',
+      'text-blue-50',
+    ],
+    ({ isSecondary }) => isSecondary
+  ),
+]);
+
+<Button />
+// outputs <button class="bg-red-500 text-red-50">
+
+<Button isSecondary />
+// outputs <button class="bg-blue-500 text-blue-50">
+```
 
 ## Extending Components
 
@@ -133,7 +183,7 @@ You can also pass extra classes to individual component instances at runtime via
 All composed components are polymorphic, meaning you are able to alter the way they render after they have been created by utilising the `as` prop. This keeps all the styling that has been applied to a component but just switches out what is ultimately being rendered (be it a different HTML element or a different custom component).
 
 ```jsx
-const Button = composed.button(() => [ ... ]);
+const Button = compose.button(() => [ ... ]);
 
 // This component will render as a `div` element instead of a `button`
 <Button as='div' />
@@ -144,7 +194,7 @@ const Button = composed.button(() => [ ... ]);
 Occasionally you may know ahead of time if your component will always use the same static prop values, such as an input element having a set `type` property. By using the `attrs` method you can implicitly set any static prop values that should be passed down to every instance of your component.
 
 ```jsx
-const TextField = composed.input.attrs({ type: 'text' })(() => [ ... ]);
+const TextField = compose.input.attrs({ type: 'text' })(() => [ ... ]);
 
 // This will render with the `type` attribute implicitly set
 // from the original declaration
