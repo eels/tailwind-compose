@@ -55,7 +55,7 @@ export const CondButtonString = compose.button((conditional) => [
   'bg-red-400', //
   'block',
   'mb-4',
-  conditional('text-white', ({ isActive }) => isActive),
+  conditional('text-white', ({ $isActive }) => $isActive),
 ]);
 
 // --- Conditional Class as array Component -----
