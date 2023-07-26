@@ -22,7 +22,12 @@
 ## Contents
 
 - [Example](#example)
-- [Intellisense](#intellisense)
+- [TypeScript Support](#typescript-support)
+- [Tailwind CSS Intellisense](#tailwind-css-intellisense)
+  - [Visual Studio Code](#visual-studio-code)
+  - [Neovim](#neovim)
+  - [WebStorm](#webstorm)
+- [API Reference](#api-reference)
 - [Browser Support](#browser-support)
 - [Badge](#badge)
 - [Contributing](#contributing)
@@ -70,7 +75,66 @@ This is what you'll see in your browser:
 
 [Open in CodeSandbox](https://codesandbox.io/p/sandbox/distracted-framework-q9m9ks?file=%2Fsrc%2Fcomponents%2Fapplication.jsx%3A14%2C15)
 
-## Intellisense
+## TypeScript Support
+
+`tailwind-compose` has first-class type definition support, making it super easy to get started with your TypeScript project.
+
+Any composed component that you create will infer the underlying base HTML element and attach to it the appropriate attribute types. This means your IDE's Intellisense can autocomplete all available props against your component, ensuring you or your peers are never in the dark.
+
+```jsx
+const MyInput = compose.input(() => [ ... ]);
+// OR
+const MyInput = compose('input', () => [ ... ]);
+
+// Returns the following TypeScript type:
+// ComposedComponent<
+//    React.ClassAttributes<HTMLInputElement> & React.InputElementAttributes<HTMLInputElement> &
+//    Props
+// >
+```
+
+If you want to ensure that any custom props are type-safe, you can pass your Type Assertions in the following way:
+
+```jsx
+interface ButtonProps {
+  size: 'small' | 'large';
+}
+
+const Button = compose.button<ButtonProps>(() => [ ... ]);
+// OR
+const Button = compose<'button', ButtonProps>('button', () => [ ... ]);
+
+// Oops! This will throw a type error because the `size` prop has not been defined
+<Button />
+
+// Life in beautiful type-safe harmony
+<Button size='small' />
+```
+
+Additionally, extended components have their types transferred to your newly created composed variant.
+
+```jsx
+interface ExampleComponentProps {
+  className?: string;
+  icon: 'tick' | 'cross';
+  large: boolean;
+}
+
+function ExampleComponent({ className, icon, large }: ExampleProps) {
+  return (
+    <div className={className}>
+      <Icon icon={icon} large={large} />
+    </div>
+  );
+}
+
+const ComposedExampleComponent = composed(ExampleComponent, () => [ ... ]);
+
+// Returns the following TypeScript type:
+// ComposedComponent<ExampleComponentProps>
+```
+
+## Tailwind CSS Intellisense
 
 You can enable autocompletion for `tailwind-compose` using the following steps below.
 
@@ -82,7 +146,10 @@ You can enable autocompletion for `tailwind-compose` using the following steps b
 ```json
 {
   "tailwindCSS.experimental.classRegex": [
-    ["(?:classnames|compose).+\\[((?:.|\n)*?)\\]\\)", "[\"'`](.*?)[\"'`]"]
+    [
+      "(?:classnames|compose).+\\[((?:.|\n)*?)\\]\\)",
+      "[\"'`](.*?)[\"'`]"
+    ]
   ],
 }
 ```
@@ -124,6 +191,78 @@ lspconfig.tailwindcss.setup({
     ]
   }
 }
+```
+
+## API Reference
+
+#### `compose`
+
+```jsx
+/**
+ *
+ * @param   {string | ComposedComponent | React.ComponentType} element
+ * @param   {composer} composer
+ * @returns {ComposedComponent}
+ */
+const Component = compose(element, composer);
+```
+
+```jsx
+/**
+ *
+ * @param   {composer} composer
+ * @returns {ComposedComponent}
+ */
+const Component = compose.div(composer);
+```
+
+#### `classnames`
+
+```jsx
+/**
+ *
+ * @param   {composer} composer
+ * @returns {string}
+ */
+const Component = classnames(composer);
+```
+
+---
+
+#### `composer`
+
+```jsx
+/**
+ *
+ * @callback composer
+ * @param    {conditional=} conditional
+ * @returns  {string[]}
+ */
+const composer = (conditional) => classes;
+```
+
+#### `conditional`
+
+```jsx
+/**
+ *
+ * @param    {string | string[]} target
+ * @param    {condition} condition
+ * @returns  {[string | string[], condition]}
+ */
+conditional(target, condition);
+```
+
+#### `condition`
+
+```jsx
+/**
+ *
+ * @callback condition
+ * @param    {object=} props
+ * @returns  {boolean}
+ */
+const condition = (props) => boolean;
 ```
 
 ## Browser Support
