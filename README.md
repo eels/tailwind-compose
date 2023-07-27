@@ -19,6 +19,17 @@
   <h1></h1>
 </div>
 
+## Motivation
+
+Like many, the first time I saw Tailwind CSS I thought, "Absolutely not". I maintained this view for a while before finally using it in earnest during a large build project. Now I get it. I can admit that Tailwind CSS _is_ good. But I still have issues with the DX.
+
+Even with the smallest of components, I find long lists of class names difficult to manage and quickly understand. After factoring in prop-based style variations, my code always becomes a string-interpolated mess, and I feel stressed. Maybe that's just how my brain works. Or doesn't work in this case.
+
+Of course, there are already [solutions to this out there](#alternative-packages), and `tailwind-compose` is just my take on it. Taking what I love about the well-established `styled` API, it aims to be a tiny drop-in tool for making your brain and your components feel okay.
+
+Maybe it's the right solution for you too, or maybe it's not, and that's okay.
+
+
 ## Contents
 
 - [Example](#example)
@@ -27,7 +38,7 @@
 - [Extending Components](#extending-components)
 - [Using `as`](#using-as)
 - [Using `attrs`](#using-attrs)
-- [`tailwind-compose` Without Tailwind CSS](#tailwind-compose-without-tailwind-cSS)
+- [`tailwind-compose` Without Tailwind CSS](#tailwind-compose-without-tailwind-css)
 - [No React? No Problem!](#no-react-no-problem)
 - [TypeScript Support](#typescript-support)
 - [Tailwind CSS Intellisense](#tailwind-css-intellisense)
@@ -91,9 +102,9 @@ This is what you'll see in your browser:
 
 ## Conditional Styles / Component Variants
 
-When creating your composed components, you may have the need to apply certain classes only when the component has a specific prop state. To achieve this, the composer callback accepts a function as its only argument (named here `conditional`) that takes both a class and a callback that must return a value that evaluates to either `true` or `false` based on the components available props.
+When creating your composed components, you may need to apply certain classes only when the component has a specific prop state. To achieve this, the composer callback accepts a function as its only argument (named here `conditional`) that takes both a class and a callback that must return a value that evaluates to either `true` or `false` based on the component's available props.
 
-If the expression is `true` to class is added, if it is `false` it is not. Simple!
+If the expression is `true`, the class is added; if it is `false`, it is not. Simple!
 
 See the [conditional](#conditional) API Reference for more details.
 
@@ -109,6 +120,16 @@ const Button = compose.button((conditional) => [
 
 <Button $isLarge />
 // outputs <button class="bg-red-500 text-red-50 text-xl">
+```
+
+Alternatively, you can use the shorthand Tuple syntax and omit the call to the `conditional` function.
+
+```jsx
+const Button = compose.button(() => [
+  'bg-red-500',
+  'text-red-50',
+  ['text-xl', ({ $isLarge }) => $isLarge],
+]);
 ```
 
 The `conditional` function can also instead take an array of classes, which can be combined with other `conditional` definitions to build up a series of variant states that your component can take on.
@@ -140,15 +161,15 @@ const Button = compose.button((conditional) => [
 
 ### Transient Props
 
-To prevent props that are only meant to be consumed by your composed components from being passed to the underlying React node or rendered to the DOM element, you can prefix them with a dollar sign (`$`), turning it into a transient prop.
+To prevent props that are only meant to be consumed by your composed components from being passed to the underlying React node or rendered to the DOM element, you can prefix them with a dollar sign (`$`), turning them into a transient prop.
 
 In the above example, `$isSecondary` is not rendered to the final DOM element.
 
 ## Extending Components
 
-As you start to build out your component library, you may wish to use a component but slightly change or build upon its styling. While you could use conditional classes and props to do this, depending on how many alterations you  make this could quickly become unmaintainable.
+As you start to build out your component library, you may wish to use a component but slightly change or build upon its styling. While you could use conditional classes and props to do this, depending on how many alterations you make, this could quickly become unmaintainable.
 
-To simplify the process, you can just extend an existing composed component and supply it with a list of additional classes you wish to attach resulting in a new component that is the best of both worlds.
+To simplify the process, you can just extend an existing composed component and supply it with a list of additional classes you wish to attach, resulting in a new component that is the best of both worlds.
 
 ```jsx
 const Button = compose.button(() => [
@@ -164,7 +185,7 @@ const BorderedButton = compose(Button, () => [
 // outputs <button class="bg-red-500 text-red-50 border border-red-700">
 ```
 
-This also works for custom components as long as they pass the `className` prop to a DOM element.
+This also works for custom components, as long as they pass the `className` prop to a DOM element.
 
 ```jsx
 function CustomButton({ children, className }) {
@@ -189,7 +210,7 @@ You can also pass extra classes to individual component instances at runtime via
 
 ## Using `as`
 
-All composed components are polymorphic, meaning you are able to alter the way they render after they have been created by utilising the `as` prop. This keeps all the styling that has been applied to a component but just switches out what is ultimately being rendered (be it a different HTML element or a different custom component).
+All composed components are polymorphic, meaning you are able to alter the way they render after they have been created by using the `as` prop. This keeps all the styling that has been applied to a component but just switches out what is ultimately being rendered (be it a different HTML element or a different custom component).
 
 ```jsx
 const Button = compose.button(() => [ ... ]);
@@ -200,7 +221,7 @@ const Button = compose.button(() => [ ... ]);
 
 ## Using `attrs`
 
-Occasionally you may know ahead of time if your component will always use the same static prop values, such as an input element having a set `type` property. By using the `attrs` method you can implicitly set any static prop values that should be passed down to every instance of your component.
+Occasionally, you may know ahead of time if your component will always use the same static prop values, such as an input element having a set `type` property. By using the `attrs` method, you can implicitly set any static prop values that should be passed down to every instance of your component.
 
 ```jsx
 const TextField = compose.input.attrs({ type: 'text' })(() => [ ... ]);
@@ -220,7 +241,7 @@ const EmailField = styled.attrs({ type: 'email' })(TextField, () => [ ... ]);
 
 ## `tailwind-compose` Without Tailwind CSS
 
-Despite the name, `tailwind-compose` can be used without Tailwind CSS entirely. At its core, `tailwind-compose` is just a string concatenation library meaning you can use any utility-first CSS framework of choice, or even just using your own classes entirely!
+Despite the name, `tailwind-compose` can be used entirely without Tailwind CSS. At its core, `tailwind-compose` is just a string concatenation library meaning, you can use any utility-first CSS framework of choice or even just your own classes!
 
 ```jsx
 import styles from './styles.css';
@@ -259,12 +280,10 @@ button({ isLarge: true });
 
 `tailwind-compose` has first-class type definition support, making it super easy to get started with your TypeScript project.
 
-Any composed component that you create will infer the underlying base HTML element and attach to it the appropriate attribute types. This means your IDE's Intellisense can autocomplete all available props against your component, ensuring you or your peers are never in the dark.
+Any composed component that you create will infer the underlying base HTML element and attach the appropriate attribute types to it. This means your IDE's Intellisense can autocomplete all available props against your component, ensuring you or your peers are never in the dark.
 
 ```jsx
 const MyInput = compose.input(() => [ ... ]);
-// OR
-const MyInput = compose('input', () => [ ... ]);
 
 // Returns the following TypeScript type:
 // ComposedComponent<
@@ -316,11 +335,11 @@ const ComposedExampleComponent = composed(ExampleComponent, () => [ ... ]);
 
 ## Tailwind CSS Intellisense
 
-You can enable autocompletion for `tailwind-compose` using the following steps below.
+You can enable autocompletion for `tailwind-compose` using the following steps below:
 
 ### Visual Studio Code
 
-1. [Install the "Tailwind CSS IntelliSense" Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+1. [Install the "Tailwind CSS IntelliSense" Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss).
 1. Add the following to your [settings.json](https://code.visualstudio.com/docs/getstarted/settings):
 
 ```json
@@ -336,7 +355,7 @@ You can enable autocompletion for `tailwind-compose` using the following steps b
 
 ### Neovim
 
-1. [Install the Tailwind CSS Language Server extension](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss)
+1. [Install the Tailwind CSS Language Server extension](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss).
 1. Add the following configuration:
 
 ```lua
@@ -358,8 +377,8 @@ lspconfig.tailwindcss.setup({
 
 ### WebStorm
 
-1. Check the version. Available for [WebStorm 2023.1](https://www.jetbrains.com/webstorm/whatsnew/2023-1/#version-2023-1-tailwind-css-configuration) and later
-1. Open the settings and go to [Languages and Frameworks | Style Sheets | Tailwind CSS](https://www.jetbrains.com/help/webstorm/tailwind-css.html#ws_css_tailwind_configuration)
+1. Check the version. Available for [WebStorm 2023.1](https://www.jetbrains.com/webstorm/whatsnew/2023-1/#version-2023-1-tailwind-css-configuration) and later.
+1. Open the settings and go to [Languages and Frameworks | Style Sheets | Tailwind CSS](https://www.jetbrains.com/help/webstorm/tailwind-css.html#ws_css_tailwind_configuration).
 1. Add the following to your Tailwind CSS configuration:
 
 ```json
@@ -494,7 +513,7 @@ To add support for browsers IE 11 and older, ensure you add polyfills for the fo
 
 ## Badge
 
-Sing loud and proud! Let the world know that you're using `tailwind-compose`
+Sing loud and proud! Let the world know that you're using `tailwind-compose`.
 
 [![styled with: tailwind-compose](https://img.shields.io/badge/styled%20with-%F0%9F%8F%97%EF%B8%8F%20tailwind--compose-blue?style=flat-square)](https://github.com/eels/tailwind-compose)
 
@@ -504,7 +523,7 @@ Sing loud and proud! Let the world know that you're using `tailwind-compose`
 
 ## Contributing
 
-Thanks for taking the time to contribute! Before you get started, please take a moment to read through our [contributing guide](https://github.com/eels/tailwind-compose/blob/main/.github/CONTRIBUTING.md). The two focus areas for `tailwind-compose` right now is increasing performance and fixing potential bugs.
+Thanks for taking the time to contribute! Before you get started, please take a moment to read through our [contributing guide](https://github.com/eels/tailwind-compose/blob/main/.github/CONTRIBUTING.md). The two focus areas for `tailwind-compose` right now are increasing performance and fixing potential bugs.
 
 However, all issues and PRs are welcome!
 
@@ -519,9 +538,9 @@ This package was primarily designed to meet my own personal goals for working wi
 
 ## License
 
-MIT - see the [LICENSE.md](https://github.com/eels/tailwind-compose/blob/main/LICENSE.md) file for details
+MIT - see the [LICENSE.md](https://github.com/eels/tailwind-compose/blob/main/LICENSE.md) file for details.
 
 ## Acknowledgments
 
 - Originally inspired by parts of the [styled-components](https://github.com/styled-components/styled-components) API
-- With additional optimisation inspiration from the 1KB alternative - [goober](https://github.com/cristianbote/goober)
+- With additional optimisation inspiration from the 1KB alternative, [goober](https://github.com/cristianbote/goober)
