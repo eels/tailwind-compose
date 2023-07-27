@@ -19,6 +19,17 @@
   <h1></h1>
 </div>
 
+## Motivation
+
+Like many, the first time I saw Tailwind CSS I thought, "Absolutely not". I maintained this view for a while before finally using it in earnest during a large build project. Now I get it. I can admit that Tailwind CSS _is_ good. But I still have issues with the DX.
+
+Even with the smallest of components, I find long lists of class names difficult to manage and quickly understand. After factoring in prop-based style variations, my code always becomes a string-interpolated mess, and I feel stressed. Maybe that's just how my brain works. Or doesn't work in this case.
+
+Of course, there are already [solutions to this out there](#alternative-packages), and `tailwind-compose` is just my take on it. Taking what I love about the well-established `styled` API, it aims to be a tiny drop-in tool for making your brain and your components feel okay.
+
+Maybe it's the right solution for you too, or maybe it's not, and that's okay.
+
+
 ## Contents
 
 - [Example](#example)
@@ -27,7 +38,7 @@
 - [Extending Components](#extending-components)
 - [Using `as`](#using-as)
 - [Using `attrs`](#using-attrs)
-- [`tailwind-compose` Without Tailwind CSS](#tailwind-compose-without-tailwind-cSS)
+- [`tailwind-compose` Without Tailwind CSS](#tailwind-compose-without-tailwind-css)
 - [No React? No Problem!](#no-react-no-problem)
 - [TypeScript Support](#typescript-support)
 - [Tailwind CSS Intellisense](#tailwind-css-intellisense)
@@ -273,8 +284,6 @@ Any composed component that you create will infer the underlying base HTML eleme
 
 ```jsx
 const MyInput = compose.input(() => [ ... ]);
-// OR
-const MyInput = compose('input', () => [ ... ]);
 
 // Returns the following TypeScript type:
 // ComposedComponent<
