@@ -28,7 +28,7 @@ export const BasicEmailField = compose('input', () => [
   'border-red-400',
   'block',
   'mb-4',
-]);
+]).attrs({ type: 'email' });
 
 // --- Basic Component w/ attrs via property ----
 
