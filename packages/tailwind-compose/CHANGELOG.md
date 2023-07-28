@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.0.0](https://github.com/eels/tailwind-compose/compare/v0.8.0...v1.0.0) - 2023-07-28
+
+### Merged
+
+- docs: update package keywords [`#287`](https://github.com/eels/tailwind-compose/pull/287)
+- feat: ensure attrs has proper typings [`#286`](https://github.com/eels/tailwind-compose/pull/286)
+- feat: further changes to documentation [`#285`](https://github.com/eels/tailwind-compose/pull/285)
+- build(deps): bump gatsby from 4.24.7 to 5.11.0 [`#272`](https://github.com/eels/tailwind-compose/pull/272)
+- feat: switch to transient props [`#284`](https://github.com/eels/tailwind-compose/pull/284)
+- documentation: create initial package documentation [`#283`](https://github.com/eels/tailwind-compose/pull/283)
+- build: bump node version for github workflows [`#281`](https://github.com/eels/tailwind-compose/pull/281)
+
+### Commits
+
+- docs: update v0.8.0 changelog [`cf0b85a`](https://github.com/eels/tailwind-compose/commit/cf0b85ae121a0b0b39e9cb5e119e3db4ffbccda5)
+- feat: configure codeql in workflow [`4628858`](https://github.com/eels/tailwind-compose/commit/4628858e45e7f4197dae7ef9a484616dfc856af5)
+- fix: ensure cypress binary is installed [`a3ffe8c`](https://github.com/eels/tailwind-compose/commit/a3ffe8c44daa0a2d3a37a4b1dc936d587a7acbd5)
+- fix: remove node sequence from setup workflow [`5ebab35`](https://github.com/eels/tailwind-compose/commit/5ebab351dea141b678e93f9586ff2e447165e6b2)
+- fix: revert testing change to ensure cypress tests pass [`20e5e98`](https://github.com/eels/tailwind-compose/commit/20e5e98232c6b8b21930137a021f65d622d63331)
+- refactor: add types for as execution prop [`57c9651`](https://github.com/eels/tailwind-compose/commit/57c9651876352846f1374ca0290c27e63164ece6)
+- refactor: adjust types [`d1d51ca`](https://github.com/eels/tailwind-compose/commit/d1d51ca9a36576bb6d6d9cc8b34f91263d04e977)
+- refactor: ensure element types are picked up [`14ce261`](https://github.com/eels/tailwind-compose/commit/14ce2617b8803603c8d7dba4240274dbc188c703)
+- refactor: ensure heavy workflow steps only execute on pr [`3f0d00a`](https://github.com/eels/tailwind-compose/commit/3f0d00a230c0d7912516166a2fdcf6c519d50b48)
+
 ## [v0.8.0](https://github.com/eels/tailwind-compose/compare/v0.7.1...v0.8.0) - 2023-07-21
 
 ### Commits
