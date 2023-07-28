@@ -23,7 +23,7 @@ export const ExtendedHeadline = compose(BasicHeadline, () => [
 
 // --- Basic Component w/ attrs -----------------
 
-export const BasicEmailField = compose.attrs({ type: 'email' })('input', () => [
+export const BasicEmailField = compose('input', () => [
   'border', //
   'border-red-400',
   'block',
@@ -47,7 +47,7 @@ export const BasicButton = compose.button(() => [
   'mb-4',
 ]);
 
-export const ExtendedButton = compose.attrs({ disabled: true })(BasicButton, () => []);
+export const ExtendedButton = compose(BasicButton, () => []).attrs({ disabled: true });
 
 // --- Conditional Class as string Component ----
 
@@ -107,21 +107,26 @@ function MockComponent({ className }: ExampleProps) {
   return React.createElement('div', { className });
 }
 
-const ExampleComponentA = compose<'input', ExampleProps>('input', () => []);
-const ExampleComponentB = compose(ExampleComponentA, () => []);
-const ExampleComponentC = compose<WebComponent>('my-component', () => []);
-const ExampleComponentD = compose(MockComponent, () => []);
-const ExampleComponentE = compose.input<ExampleProps>(() => []);
-const ExampleComponentF = compose.input.attrs({ type: 'text' })(() => []);
+export const ExampleComponentA = compose('input', () => []);
+export const ExampleComponentB = compose(ExampleComponentA, () => []);
+export const ExampleComponentC = compose('my-component', () => []);
+export const ExampleComponentD = compose(MockComponent, () => []);
+export const ExampleComponentE = compose.input(() => []);
 
-const ExampleComponentZ = ExampleComponentA.toClass({ $isTestProp: true });
+export const ExampleComponentF = compose<'input', ExampleProps>('input', () => []);
+export const ExampleComponentG = compose(ExampleComponentF, () => []);
+export const ExampleComponentH = compose<WebComponent>('my-component', () => []);
+export const ExampleComponentI = compose.input<ExampleProps>(() => []);
 
-(() => [
-  ExampleComponentA,
-  ExampleComponentB,
-  ExampleComponentC,
-  ExampleComponentD,
-  ExampleComponentE,
-  ExampleComponentF,
-  ExampleComponentZ,
-])();
+export const ExampleComponentJ = compose('input', () => []).attrs({ type: 'text' });
+export const ExampleComponentK = compose(ExampleComponentJ, () => []).attrs({ type: 'email' });
+export const ExampleComponentL = compose('my-component', () => []).attrs({ type: 'text' });
+export const ExampleComponentM = compose(MockComponent, () => []).attrs({ $isTestProp: true });
+export const ExampleComponentN = compose.input.attrs({})(() => []);
+
+export const ExampleComponentO = compose<'input', ExampleProps>('input', () => []).attrs({});
+export const ExampleComponentP = compose(ExampleComponentF, () => []).attrs({});
+export const ExampleComponentQ = compose<WebComponent>('my-component', () => []).attrs({});
+export const ExampleComponentS = compose.input.attrs<ExampleProps>({})<ExampleProps>(() => []);
+
+export const ExampleComponentZ = ExampleComponentA.toClass({ $isTestProp: true });

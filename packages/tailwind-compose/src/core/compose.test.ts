@@ -48,7 +48,7 @@ describe('core/compose', () => {
     const classes = () => [];
     const target = 'div';
 
-    compose.attrs(attrs)(target, classes);
+    compose(target, classes).attrs(attrs);
     expect(mockConstruct).toHaveBeenCalledWith({ attrs, classes, target });
   });
 
@@ -67,5 +67,9 @@ describe('core/compose', () => {
 
     compose.div.attrs(attrs)(classes);
     expect(mockConstruct).toHaveBeenCalledWith({ attrs, classes, target });
+  });
+
+  it('should access native property on proxy', () => {
+    expect(compose.name).toBe('Compose');
   });
 });

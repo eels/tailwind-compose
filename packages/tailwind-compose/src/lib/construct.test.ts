@@ -18,7 +18,7 @@ describe('lib/construct', () => {
     expect(screen.getByRole('heading')).toHaveClass('text-black');
   });
 
-  it('should render a basic element with additional attrs', () => {
+  it('should render a basic element with basic additional attrs', () => {
     interface Attrs {
       type: string;
     }
@@ -33,6 +33,28 @@ describe('lib/construct', () => {
     expect(screen.getByRole('textbox')).toBeInTheDocument();
     expect(screen.getByRole('textbox')).toHaveClass('text-black');
     expect(screen.getByRole('textbox')).toHaveAttribute('type', 'text');
+  });
+
+  it('should render a basic element with functional additional attrs', () => {
+    interface Props {
+      type: string;
+    }
+
+    interface Attrs {
+      (props: Props): { type: string };
+    }
+
+    const parameters: ConstructOptions<Props, Attrs> = {
+      attrs: (props: Props) => ({ type: props.type }),
+      classes: () => ['text-black'],
+      target: 'input',
+    };
+
+    render(createElement(construct(parameters), { type: 'text' }));
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toHaveClass('text-black');
+    expect(screen.getByRole('textbox')).toHaveAttribute('type', 'text');
+    expect(construct(parameters).toClass({ type: 'text' })).toEqual('text-black');
   });
 
   it('should render a basic element without passing non-valid props as attributes', () => {

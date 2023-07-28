@@ -1,24 +1,24 @@
 import { construct } from '@src/lib/construct';
-import type { Attrs, ComposeFactory, ComposerFn, Props, Target } from '@types';
+import type { ComposeFactory, ComposerFn, Props, Target } from '@types';
 
 const Compose = <P extends Props>(target: Target<P>, classes: ComposerFn<P>) => {
-  return construct<P, Record<string, unknown>>({
+  const compose = construct<P, Record<string, unknown>>({
     classes,
     target,
   });
-};
 
-Object.defineProperty(Compose, 'attrs', {
-  value: <A extends Attrs>(attrs: A) => {
-    return <P extends Props>(target: Target<P>, classes: ComposerFn<P & A>) => {
+  Object.defineProperty(compose, 'attrs', {
+    value: <A extends Props>(attrs: A) => {
       return construct<P, A>({
         attrs,
-        classes,
-        target,
+        classes: classes as ComposerFn<P & A>,
+        target: target as Target<P>,
       });
-    };
-  },
-});
+    },
+  });
+
+  return compose;
+};
 
 const ComposeFactoryProxyInstance = new Proxy(Compose, {
   get(target: typeof Compose, property: string) {
@@ -34,7 +34,7 @@ const ComposeFactoryProxyInstance = new Proxy(Compose, {
     };
 
     Object.defineProperty(ComposeTag, 'attrs', {
-      value: <A extends Attrs>(attrs: A) => {
+      value: <A extends Props>(attrs: A) => {
         return <P extends Props>(classes: ComposerFn<P & A>) => {
           return construct<P, A>({
             attrs,

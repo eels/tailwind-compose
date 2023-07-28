@@ -51,6 +51,7 @@ Maybe it's the right solution for you too, or maybe it's not, and that's okay.
   - [compose.toClass](#composetoclass)
   - [classnames](#classnames)
   - [composer](#composer)
+  - [attrsFactory](#attrsfactory)
   - [conditional](#conditional)
   - [condition](#condition)
 - [Browser Support](#browser-support)
@@ -236,7 +237,7 @@ const TextField = compose.input.attrs({ type: 'text' })(() => [ ... ]);
 
 ```jsx
 // For extended components, you can define attributes in the same way
-const EmailField = styled.attrs({ type: 'email' })(TextField, () => [ ... ]);
+const EmailField = styled(TextField, () => [ ... ]).attrs({ type: 'email' });
 ```
 
 ## `tailwind-compose` Without Tailwind CSS
@@ -420,18 +421,18 @@ const Component = compose.div(composer);
 ```jsx
 /**
  * Create a composed component from a variable target w/ defined static attributes
- * @param   {object} attributes
+ * @param   {object | attrsFactory} attributes
  * @param   {string | ComposedComponent | React.ComponentType} element
  * @param   {composer} composer
  * @returns {ComposedComponent}
  */
-const Component = compose.attrs(attributes)(element, composer);
+const Component = compose(element, composer).attrs(attributes);
 ```
 
 ```jsx
 /**
  * Create a composed component from a set element w/ defined static attributes
- * @param   {object} attributes
+ * @param   {object | attrsFactory} attributes
  * @param   {composer} composer
  * @returns {ComposedComponent}
  */
@@ -476,6 +477,18 @@ const Component = classnames(composer);
  * @returns  {string[]}
  */
 const composer = (conditional) => classes;
+```
+
+#### `attrsFactory`
+
+```jsx
+/**
+ * Callback to create an attributes object
+ * @callback attrsFactory
+ * @param    {object=} props
+ * @returns  {object}
+ */
+const attrsFactory = (props) => props;
 ```
 
 #### `conditional`

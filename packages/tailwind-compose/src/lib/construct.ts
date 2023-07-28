@@ -15,7 +15,8 @@ export function construct<P extends Props, A extends Attrs>(options: Options<P, 
     const name = generateDisplayName(target);
 
     function composed(props: P, ref: Ref<Element>) {
-      const constructedProps = Object.assign<ClassName, A, P>({}, attrs, props);
+      const constructedAttrs = typeof attrs === 'function' ? attrs(props) : attrs;
+      const constructedProps = Object.assign<ClassName, A, P>({}, constructedAttrs, props);
       const constructedPropsKeys = Object.keys(constructedProps);
       const as = constructedProps.as;
       const hasValidAs = ['function', 'object', 'string'].includes(typeof as);
@@ -48,7 +49,8 @@ export function construct<P extends Props, A extends Attrs>(options: Options<P, 
 
     Object.defineProperty(component, 'toClass', {
       value: (props: P) => {
-        const constructedProps = Object.assign<ClassName, A, P>({}, attrs, props);
+        const constructedAttrs = typeof attrs === 'function' ? attrs(props) : attrs;
+        const constructedProps = Object.assign<ClassName, A, P>({}, constructedAttrs, props);
         const componentClassNames = constructedProps.className;
         const classArray = generateClassesArray(classes)(constructedProps);
 

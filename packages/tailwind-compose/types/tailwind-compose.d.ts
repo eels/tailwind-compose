@@ -2,15 +2,16 @@ import type * as React from 'react';
 
 export type ExtendableObject<T = any> = Record<string, T>;
 
-export type Attrs = ExtendableObject;
-
 export type Props = ExtendableObject;
+
+export type BaseObject = Record<string, never>;
 
 // ---
 
 export type Target<P> = string | Exclude<keyof JSX.IntrinsicElements, 'symbol' | 'object'> | React.ComponentType<P> | ComposedComponent<P>;
 
-export interface ComposedComponent<P> extends React.ForwardRefExoticComponent<ExecutionProps & P> {
+export interface ComposedComponent<P, A extends BaseObject = BaseObject> extends React.ForwardRefExoticComponent<ExecutionProps & P> {
+  attrs: A extends never ? never : (attrs: Attrs<P>) => ComposedComponent<P>;
   defaultProps?: ExecutionProps & Partial<React.PropsWithoutRef<P>>;
   toClass: (props?: P) => string;
   toString: () => string;
@@ -32,27 +33,27 @@ export type Classes<P> = (string | Tuple<P>)[];
 
 // ---
 
+export type Attrs<P extends Props = Props> = Partial<P> | ((props: P) => Partial<P>);
+
 export type PolymorphicAttributeProps<T, P extends Props = Props> = JSX.LibraryManagedAttributes<T, JSX.IntrinsicElements[T] & P>;
 
 // ---
 
 export interface StyledCompose {
-  <T extends keyof JSX.IntrinsicElements, P extends Props = Props>(target: T, classes: ComposerFn<P>): ComposedComponent<PolymorphicAttributeProps<T, P>>;
+  <T extends keyof JSX.IntrinsicElements, P extends Props = Props>(target: T, classes: ComposerFn<PolymorphicAttributeProps<T, P>>): ComposedComponent<PolymorphicAttributeProps<T, P>>;
   <P extends Props = Props, PP extends Props = Props>(target: ComposedComponent<P>, classes: ComposerFn<P & PP>): ComposedComponent<P & PP>;
-  <P extends Props = Props>(target: string, classes: ComposerFn<P>): ComposedComponent<P & Partial<JSX.ElementChildrenAttribute>>;
+  <P extends Props = Props>(target: string, classes: ComposerFn<P>): ComposedComponent<Partial<JSX.ElementChildrenAttribute> & P>;
   <P extends Props = Props>(target: Target<P>, classes: ComposerFn<P>): ComposedComponent<P>;
-  attrs: <A extends Attrs>(attrs: A) => StyledCompose;
 }
 
 export interface StyledTagCompose<T> {
-  <P extends Props = Props>(classes: ComposerFn<P>): ComposedComponent<PolymorphicAttributeProps<T, P>>;
-  <P extends Props = Props>(classes: ComposerFn<P>): ComposedComponent<P>;
+  <P extends Props = Props>(classes: ComposerFn<P>): ComposedComponent<PolymorphicAttributeProps<T, P>, never>;
+  <P extends Props = Props>(classes: ComposerFn<P>): ComposedComponent<P, never>;
+  attrs: <P extends Props = Props>(attrs: Attrs<PolymorphicAttributeProps<T, P>>) => StyledTagCompose<T>;
 }
 
 export type WithStyledTagAttrs = {
-  [key in keyof JSX.IntrinsicElements]: StyledTagCompose<key> & {
-    attrs: <A extends Attrs>(attrs: PolymorphicAttributeProps<key, A>) => StyledTagCompose<key>;
-  };
+  [key in keyof JSX.IntrinsicElements]: StyledTagCompose<key>;
 };
 
 export type ComposeFactory = StyledCompose & WithStyledTagAttrs;
