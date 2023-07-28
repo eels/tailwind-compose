@@ -25,7 +25,7 @@ Like many, the first time I saw Tailwind CSS I thought, "Absolutely not". I main
 
 Even with the smallest of components, I find long lists of class names difficult to manage and quickly understand. After factoring in prop-based style variations, my code always becomes a string-interpolated mess, and I feel stressed. Maybe that's just how my brain works. Or doesn't work in this case.
 
-Of course, there are already [solutions to this out there](#alternative-packages), and `tailwind-compose` is just my take on it. Taking what I love about the well-established `styled` API, it aims to be a tiny drop-in tool for making your brain and your components feel okay.
+Of course, there are already [solutions to this out there](#alternative-packages), and `tailwind-compose` is just my take on it. Taking what I love about the well-established `styled` API, it aims to be a [tiny](https://bundlephobia.com/package/tailwind-compose) drop-in tool for making your brain and your components feel okay.
 
 Maybe it's the right solution for you too, or maybe it's not, and that's okay.
 

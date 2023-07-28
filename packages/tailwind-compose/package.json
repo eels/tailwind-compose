@@ -46,8 +46,15 @@
     "tailwind-compose.d.ts"
   ],
   "keywords": [
+    "class interpolation",
+    "classnames",
+    "compose",
+    "css",
     "react",
-    "tailwind"
+    "styled",
+    "tailwind-compose",
+    "tailwind",
+    "variants"
   ],
   "peerDependencies": {
     "react": ">=16.8.0",
