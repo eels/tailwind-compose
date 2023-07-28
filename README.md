@@ -51,6 +51,7 @@ Maybe it's the right solution for you too, or maybe it's not, and that's okay.
   - [compose.toClass](#composetoclass)
   - [classnames](#classnames)
   - [composer](#composer)
+  - [attrsFactory](#attrsfactory)
   - [conditional](#conditional)
   - [condition](#condition)
 - [Browser Support](#browser-support)
@@ -223,20 +224,29 @@ const Button = compose.button(() => [ ... ]);
 
 Occasionally, you may know ahead of time if your component will always use the same static prop values, such as an input element having a set `type` property. By using the `attrs` method, you can implicitly set any static prop values that should be passed down to every instance of your component.
 
+Furthermore, you can also use the `attrs` method to attach default values for your dynamic transient props.
+
 ```jsx
-const TextField = compose.input.attrs({ type: 'text' })(() => [ ... ]);
+const TextField = compose.input.attrs({ $hasIcon: false, type: 'text' })(() => [ ... ]);
 
 // This will render with the `type` attribute implicitly set
 // from the original declaration
 <TextField />
 
 // You can also locally override any attributes that are defined above
-<TextField type='email' />
+<TextField $hasIcon={true} type='email' />
 ```
 
 ```jsx
 // For extended components, you can define attributes in the same way
-const EmailField = styled.attrs({ type: 'email' })(TextField, () => [ ... ]);
+const EmailField = styled(TextField, () => [ ... ]).attrs({ type: 'email' });
+```
+
+The `attrs` method also accepts a callback function that receives the props that the composed component will receive. The return value of this function will be merged into the resulting props.
+
+```jsx
+const Button = compose.button.attrs((props) => ({ $size: props.$size }))(() => [ ... ]);
+
 ```
 
 ## `tailwind-compose` Without Tailwind CSS
@@ -420,18 +430,18 @@ const Component = compose.div(composer);
 ```jsx
 /**
  * Create a composed component from a variable target w/ defined static attributes
- * @param   {object} attributes
+ * @param   {object | attrsFactory} attributes
  * @param   {string | ComposedComponent | React.ComponentType} element
  * @param   {composer} composer
  * @returns {ComposedComponent}
  */
-const Component = compose.attrs(attributes)(element, composer);
+const Component = compose(element, composer).attrs(attributes);
 ```
 
 ```jsx
 /**
  * Create a composed component from a set element w/ defined static attributes
- * @param   {object} attributes
+ * @param   {object | attrsFactory} attributes
  * @param   {composer} composer
  * @returns {ComposedComponent}
  */
@@ -476,6 +486,18 @@ const Component = classnames(composer);
  * @returns  {string[]}
  */
 const composer = (conditional) => classes;
+```
+
+#### `attrsFactory`
+
+```jsx
+/**
+ * Callback to create an attributes object
+ * @callback attrsFactory
+ * @param    {object=} props
+ * @returns  {object}
+ */
+const attrsFactory = (props) => props;
 ```
 
 #### `conditional`
