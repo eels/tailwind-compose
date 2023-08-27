@@ -1,0 +1,24 @@
+{
+  "name": "@tailwind-compose/benchmarks",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./src/benchmark.js",
+  "scripts": {
+    "benchmark": "node \"./src/benchmark.js\"",
+    "format": "prettier \"./src/**/*.js\" --check",
+    "format:fix": "yarn format --write",
+    "lint": "eslint \"./src/**/*.js\" --cache",
+    "lint:fix": "yarn lint --fix"
+  },
+  "dependencies": {
+    "class-variance-authority": "0.7.0",
+    "tailwind-compose": "*",
+    "tailwind-variants": "0.1.13"
+  },
+  "devDependencies": {
+    "@tailwind-compose/eslint-config": "*",
+    "@tailwind-compose/prettier-config": "*",
+    "benchmark": "2.1.4"
+  }
+}

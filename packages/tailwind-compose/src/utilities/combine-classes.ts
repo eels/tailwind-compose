@@ -1,11 +1,12 @@
 export function cc(classes: (string | undefined)[]) {
   let final = '';
 
-  for (let i = 0; i < classes.length; i++) {
+  for (let i = 0, len = classes.length; i < len; i++) {
     const item = classes[i];
 
-    if (item && item.trim() !== '') {
-      final += (final && ' ') + item.trim();
+    if (item) {
+      final && (final += ' ');
+      final += item;
     }
   }
 

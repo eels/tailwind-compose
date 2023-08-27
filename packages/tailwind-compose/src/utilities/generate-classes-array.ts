@@ -7,17 +7,19 @@ export function conditional<P>(target: ConditionTarget, condition: Condition<P>)
 export function generateClassesArray<P>(composer: ComposerFn<P>) {
   return (props: P = {} as P) => {
     const classes = composer(conditional);
-    const entries = classes.reduce<string[]>((collection, value) => {
-      const isString = typeof value === 'string';
-      const [target, condition] = !isString ? value : [value, () => true];
-      const isTargetArray = Array.isArray(target);
+    const final: string[] = [];
 
-      const computedValue = isTargetArray ? target : [target];
-      const computedCondition = condition(props);
+    for (let i = 0, len = classes.length; i < len; i++) {
+      const value = classes[i];
+      const [target, condition = true] = typeof value !== 'string' ? value : [value];
 
-      return computedCondition ? collection.concat(computedValue) : collection;
-    }, []);
+      const computedValue = typeof target === 'object' ? target : [target];
 
-    return entries;
+      if (typeof condition === 'boolean' ? condition : condition(props)) {
+        Array.prototype.push.apply(final, computedValue);
+      }
+    }
+
+    return final;
   };
 }
