@@ -4,18 +4,12 @@ import { generateClassesArray } from '@src/utilities/generate-classes-array';
 import { generateDisplayName } from '@src/utilities/generate-display-name';
 import { isValidProp } from '@src/utilities/is-valid-prop';
 import type { Attrs, ClassName, ConstructOptions as Options, Props } from '@types';
-import type { ForwardRefExoticComponent, PropsWithoutRef, Ref, RefAttributes } from 'react';
-
-type ReactComponent<P> = ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<Element>>;
-
-interface WrappedComponent<P extends Props> extends ReactComponent<P> {
-  toClass?: (props?: P) => string;
-}
+import type { Ref } from 'react';
 
 export function construct<P extends Props, A extends Attrs>(options: Options<P, A>) {
   const { attrs = {} as A, classes, target } = options;
 
-  function constructClassOutput(props: P) {
+  function constructClassOutput(props: P = {} as P) {
     const constructedAttrs = typeof attrs === 'function' ? attrs(props) : attrs;
     const constructedProps = Object.assign<ClassName, A, P>({}, constructedAttrs, props);
     const constructedPropsKeys = Object.keys(constructedProps);
@@ -55,9 +49,7 @@ export function construct<P extends Props, A extends Attrs>(options: Options<P, 
     value: generateDisplayName(target),
   });
 
-  const component: WrappedComponent<P> = forwardRef(composed);
-
-  component.toClass = (props?: P) => constructClassOutput(props ?? ({} as P)).classOutput;
-
-  return component;
+  return Object.assign(forwardRef(composed), {
+    toClass: (props?: P) => constructClassOutput(props).classOutput,
+  });
 }
