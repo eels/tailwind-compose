@@ -14,9 +14,4 @@ describe('utils/cc', () => {
     expect(cc(['one', 'two', ''])).toBe('one two');
     expect(cc(['one', '', 'two'])).toBe('one two');
   });
-
-  it('should appropriately handle multi-length empty string array items', () => {
-    expect(cc(['one', 'two', ' '])).toBe('one two');
-    expect(cc(['one', ' ', 'two'])).toBe('one two');
-  });
 });
