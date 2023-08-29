@@ -74,8 +74,21 @@ export interface ClassName {
   className?: string;
 }
 
+export interface DefineConfigOptions {
+  hooks?: {
+    onDone?: (className: string) => string;
+  };
+}
+
 // ---
 
 export const compose: ComposeFactory;
 
 export function classnames<P extends Props>(classes: ComposerFn<P>): (props?: P) => string;
+
+// ---
+
+export function defineConfig(options: DefineConfigOptions): {
+  classnames: typeof classnames;
+  compose: ComposeFactory;
+};

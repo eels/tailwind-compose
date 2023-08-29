@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classnames, compose } from 'tailwind-compose';
+import { classnames, compose } from '../tailwind-compose.config';
 
 // --- Basic Component --------------------------
 
@@ -90,6 +90,20 @@ export const CondClassNamesButtonArray = classnames((conditional) => [
   'block',
   'mb-4',
   conditional(['text-white', 'bg-black'], ({ $isActive }) => $isActive),
+]);
+
+// --- Execution hooks --------------------------
+
+export const HookedHeadline = compose.h1(() => [
+  'text-red-800', //
+  'text-red-900',
+  'mb-4',
+]);
+
+export const HookedClassNamesHeadline = classnames(() => [
+  'text-red-800', //
+  'text-red-900',
+  'mb-4',
 ]);
 
 // --- Typescript type tests --------------------

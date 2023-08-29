@@ -1,3 +1,5 @@
+import { OPTIONS } from '@src/utilities/options';
+
 export function cc(classes: (string | undefined)[]) {
   let final = '';
 
@@ -8,5 +10,5 @@ export function cc(classes: (string | undefined)[]) {
     }
   }
 
-  return final;
+  return OPTIONS.get('default')?.hooks?.onDone?.(final) ?? final;
 }

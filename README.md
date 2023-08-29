@@ -40,6 +40,8 @@ Maybe it's the right solution for you too, or maybe it's not, and that's okay.
 - [Using `attrs`](#using-attrs)
 - [`tailwind-compose` Without Tailwind CSS](#tailwind-compose-without-tailwind-css)
 - [No React? No Problem!](#no-react-no-problem)
+- [Execution Hooks](#execution-hooks)
+  - [Example with `tailwind-merge`](#example-with-tailwind-merge)
 - [TypeScript Support](#typescript-support)
 - [Tailwind CSS Intellisense](#tailwind-css-intellisense)
   - [Visual Studio Code](#visual-studio-code)
@@ -286,6 +288,51 @@ button({ isLarge: true });
 // outputs "bg-red-500 text-red-50 text-xl"
 ```
 
+## Execution Hooks
+
+Inspired by [Joe Bell](https://github.com/joe-bell)'s work on [cva](https://github.com/joe-bell/cva).
+
+`tailwind-compose` allows you to perform additional custom logic to the concatenated class string by defining a global event handler for the `onDone` event. This can be particularly useful if you want to combine `tailwind-compose` with a utility function such as [`tailwind-merge`](https://github.com/dcastil/tailwind-merge).
+
+### Example with `tailwind-merge`
+
+```jsx
+// tailwind-compose.config.ts
+
+import { DefineConfigOptions, defineConfig } from 'tailwind-compose';
+import { twMerge } from 'tailwind-merge';
+
+const config: DefineConfigOptions = {
+  hooks: {
+    onDone: (className) => twMerge(className),
+  },
+};
+
+export const { classname, compose } = defineConfig(config);
+```
+
+```jsx
+// components/button.ts
+
+import { classnames, compose } from '../tailwind-compose.config';
+
+const button = classnames(() => [
+  'bg-orange-100',
+  'bg-red-500',
+]);
+
+const Button = compose.button(() => [
+  'bg-orange-100',
+  'bg-red-500',
+]);
+
+button();
+// outputs "bg-red-500"
+
+<Button />
+// outputs <button class="bg-red-500">
+```
+
 ## TypeScript Support
 
 `tailwind-compose` has first-class type definition support, making it super easy to get started with your TypeScript project.
@@ -472,6 +519,18 @@ const classlist = Component.toClass(props);
  * @returns {string}
  */
 const Component = classnames(composer);
+```
+
+#### `defineConfig`
+
+```jsx
+/**
+ * Generate a set of `tailwind-compose` functions with custom configurations
+ * @param   {object} config
+ * @param   {object} config.hooks.onDone
+ * @returns {object}
+ */
+const { classnames, compose } = defineConfig(config);
 ```
 
 ---
