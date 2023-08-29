@@ -37,6 +37,11 @@ export function ClassnamesComponents() {
       >
         Conditional ClassNames as array Component Button
       </button>
+
+      {/* Hooked ClassNames */}
+      <h1 className={Composed.HookedClassNamesHeadline()} data-cy='hooked-classnames-headline'>
+        Hooked ClassNames Headline
+      </h1>
     </React.Fragment>
   );
 }

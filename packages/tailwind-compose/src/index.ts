@@ -1,2 +1,3 @@
-export { classnames } from '@src/core/classnames';
-export { compose } from '@src/core/compose';
+import { define } from '@src/core/define';
+
+export const { classnames, compose, defineConfig } = define();

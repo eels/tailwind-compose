@@ -68,6 +68,11 @@ export function ComposeComponents() {
       >
         Conditional Class as array Component Button
       </Composed.CondButtonArray>
+
+      {/* Hooked Component */}
+      <Composed.HookedHeadline data-cy='hooked-headline'>
+        Hooked Component Headline
+      </Composed.HookedHeadline>
     </React.Fragment>
   );
 }

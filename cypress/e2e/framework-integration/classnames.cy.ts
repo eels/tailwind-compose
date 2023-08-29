@@ -24,6 +24,13 @@ describe('framework-integration/classnames', () => {
     cy.get(component).should('have.class', 'bg-red-800 block mb-4');
     cy.get(component).should('not.have.class', 'text-white bg-black');
     cy.get(component).click();
-    cy.get(component).should('have.class', 'bg-red-800 block mb-4 text-white bg-black');
+    cy.get(component).should('have.class', 'block mb-4 text-white bg-black');
+  });
+
+  it('should correctly output the class after running through the `onDone` hook', () => {
+    const component = '[data-cy="hooked-classnames-headline"]';
+
+    cy.get(component).should('have.class', 'text-red-900 mb-4');
+    cy.get(component).should('not.have.class', 'text-red-800');
   });
 });

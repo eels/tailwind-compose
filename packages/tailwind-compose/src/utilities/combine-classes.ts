@@ -1,4 +1,6 @@
-export function cc(classes: (string | undefined)[]) {
+import type { DefineConfigOptions } from '@types';
+
+export function cc(classes: (string | undefined)[], options?: DefineConfigOptions) {
   let final = '';
 
   for (let i = 0, len = classes.length; i < len; ++i) {
@@ -8,5 +10,5 @@ export function cc(classes: (string | undefined)[]) {
     }
   }
 
-  return final;
+  return options?.hooks?.onDone?.(final) ?? final;
 }
