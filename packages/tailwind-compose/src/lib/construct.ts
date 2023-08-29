@@ -9,7 +9,7 @@ import type { ForwardRefExoticComponent, PropsWithoutRef, Ref, RefAttributes } f
 type ReactComponent<P> = ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<Element>>;
 
 interface WrappedComponent<P extends Props> extends ReactComponent<P> {
-  toClass?: (props: P) => string;
+  toClass?: (props?: P) => string;
 }
 
 export function construct<P extends Props, A extends Attrs>(options: Options<P, A>) {
@@ -57,7 +57,7 @@ export function construct<P extends Props, A extends Attrs>(options: Options<P, 
 
   const component: WrappedComponent<P> = forwardRef(composed);
 
-  component.toClass = (props: P) => constructClassOutput(props).classOutput;
+  component.toClass = (props?: P) => constructClassOutput(props ?? ({} as P)).classOutput;
 
   return component;
 }
