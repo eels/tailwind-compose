@@ -7,14 +7,14 @@ import type { Attrs, ClassName, ConstructOptions as Options, Props } from '@type
 import type { Ref } from 'react';
 
 export function construct<P extends Props, A extends Attrs>(options: Options<P, A>) {
-  const { attrs = {} as A, classes, target } = options;
+  const { attrs = {} as A, classes, config, target } = options;
 
   function constructClassOutput(props: P = {} as P) {
     const constructedAttrs = typeof attrs === 'function' ? attrs(props) : attrs;
     const constructedProps = Object.assign<ClassName, A, P>({}, constructedAttrs, props);
     const constructedPropsKeys = Object.keys(constructedProps);
     const classArray = generateClassesArray(classes)(constructedProps);
-    const classOutput = cc([...classArray, constructedProps.className]);
+    const classOutput = cc([...classArray, constructedProps.className], config);
 
     return {
       classOutput,

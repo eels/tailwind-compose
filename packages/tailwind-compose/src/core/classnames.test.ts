@@ -20,7 +20,7 @@ describe('core/classnames', () => {
 
   it('should return a function', () => {
     const classes = () => [];
-    const classnamesInstance = classnames(classes);
+    const classnamesInstance = classnames()(classes);
 
     expect(classnamesInstance).toBeInstanceOf(Function);
   });
@@ -28,7 +28,7 @@ describe('core/classnames', () => {
   it('should call the `cc` and `generateClassesArray` functions', () => {
     const classes = () => [];
     const props = {};
-    const classnamesInstance = classnames(classes);
+    const classnamesInstance = classnames()(classes);
 
     const mockReturnValue: string[] = [];
     const mockGenerateClassesArrayPropCurry = jest.fn(() => mockReturnValue);
@@ -42,12 +42,12 @@ describe('core/classnames', () => {
     classnamesInstance(props);
     expect(generateClassesArray).toHaveBeenCalledWith(classes);
     expect(mockGenerateClassesArrayPropCurry).toHaveBeenCalledWith(props);
-    expect(cc).toHaveBeenCalledWith(mockReturnValue);
+    expect(cc).toHaveBeenCalledWith(mockReturnValue, undefined);
   });
 
   it('should use an empty props object if none is provided', () => {
     const classes = () => [];
-    const classnamesInstance = classnames(classes);
+    const classnamesInstance = classnames()(classes);
 
     const mockGenerateClassesArrayPropCurry = jest.fn();
 

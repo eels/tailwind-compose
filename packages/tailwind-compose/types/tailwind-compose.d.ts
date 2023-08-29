@@ -63,6 +63,7 @@ export type ComposeFactory = StyledCompose & WithStyledTagAttrs;
 export interface ConstructOptions<P, A> {
   attrs?: A;
   classes: ComposerFn<P & A>;
+  config?: DefineConfigOptions;
   target: Target<P>;
 }
 

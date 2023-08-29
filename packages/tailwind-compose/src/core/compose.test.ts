@@ -16,22 +16,22 @@ describe('core/compose', () => {
   });
 
   it('should be a function', () => {
-    expect(compose).toBeInstanceOf(Function);
+    expect(compose()).toBeInstanceOf(Function);
   });
 
   it('should have an `attrs` property', () => {
-    expect(compose).toHaveProperty('attrs');
+    expect(compose()).toHaveProperty('attrs');
   });
 
   it('should have a series of dynamic properties', () => {
     for (const tag of tags) {
-      expect(compose).toHaveProperty(tag);
+      expect(compose()).toHaveProperty(tag);
     }
   });
 
   it('should have a series of dynamic properties with their own `attrs` property', () => {
     for (const tag of tags) {
-      expect(compose[tag]).toHaveProperty('attrs');
+      expect(compose()[tag]).toHaveProperty('attrs');
     }
   });
 
@@ -39,7 +39,7 @@ describe('core/compose', () => {
     const classes = () => [];
     const target = 'div';
 
-    compose(target, classes);
+    compose()(target, classes);
     expect(mockConstruct).toHaveBeenCalledWith({ classes, target });
   });
 
@@ -48,7 +48,7 @@ describe('core/compose', () => {
     const classes = () => [];
     const target = 'div';
 
-    compose(target, classes).attrs(attrs);
+    compose()(target, classes).attrs(attrs);
     expect(mockConstruct).toHaveBeenCalledWith({ attrs, classes, target });
   });
 
@@ -56,7 +56,7 @@ describe('core/compose', () => {
     const classes = () => [];
     const target = 'div';
 
-    compose.div(classes);
+    compose().div(classes);
     expect(mockConstruct).toHaveBeenCalledWith({ classes, target });
   });
 
@@ -65,11 +65,11 @@ describe('core/compose', () => {
     const classes = () => [];
     const target = 'div';
 
-    compose.div.attrs(attrs)(classes);
+    compose().div.attrs(attrs)(classes);
     expect(mockConstruct).toHaveBeenCalledWith({ attrs, classes, target });
   });
 
   it('should access native property on proxy', () => {
-    expect(compose.name).toBe('Compose');
+    expect(compose().name).toBe('Compose');
   });
 });
