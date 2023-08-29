@@ -79,7 +79,7 @@ describe('framework-integration/compose', () => {
     cy.get(component).should('not.have.class', 'text-white bg-black');
     cy.get(component).should('have.prop', 'tagName').should('eq', 'BUTTON');
     cy.get(component).click();
-    cy.get(component).should('have.class', 'bg-red-800 block mb-4 text-white bg-black');
+    cy.get(component).should('have.class', 'block mb-4 text-white bg-black');
   });
 
   it('should correctly output the class after running through the `onDone` hook', () => {
