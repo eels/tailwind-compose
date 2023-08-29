@@ -52,6 +52,7 @@ Maybe it's the right solution for you too, or maybe it's not, and that's okay.
   - [compose.attrs](#composeattrs)
   - [compose.toClass](#composetoclass)
   - [classnames](#classnames)
+  - [defineConfig](#defineconfig)
   - [composer](#composer)
   - [attrsFactory](#attrsfactory)
   - [conditional](#conditional)
