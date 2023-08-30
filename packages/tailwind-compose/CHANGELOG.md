@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.0](https://github.com/eels/tailwind-compose/compare/v1.0.0...v1.1.0) - 2023-08-30
+
+### Merged
+
+- feat: add execution hooks + documentation [`#293`](https://github.com/eels/tailwind-compose/pull/293)
+- feat: performance improvements [`#292`](https://github.com/eels/tailwind-compose/pull/292)
+
+### Commits
+
+- docs: add missing links to contents listing [`cbdaa17`](https://github.com/eels/tailwind-compose/commit/cbdaa1731e3b74c24fbd95864ee5a9beeeeaa926)
+- docs: update v1.0.0 changelog [`29a306c`](https://github.com/eels/tailwind-compose/commit/29a306c72240076c60cda6a1d678b7feae55c75a)
+
 ## [v1.0.0](https://github.com/eels/tailwind-compose/compare/v0.8.0...v1.0.0) - 2023-07-28
 
 ### Merged
