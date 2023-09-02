@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@remix-run/dev": "1.19.0",
-    "@remix-run/eslint-config": "1.19.0",
+    "@remix-run/eslint-config": "1.19.3",
     "@tailwind-compose/eslint-config": "*",
     "@tailwind-compose/prettier-config": "*",
     "@tailwind-compose/typescript-config": "*",
