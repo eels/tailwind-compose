@@ -35,7 +35,7 @@
     "cypress": "^12.9.0",
     "eslint": "^8.22.0",
     "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
+    "lint-staged": "^14.0.1",
     "rimraf": "^4.4.1",
     "start-server-and-test": "^2.0.0",
     "syncpack": "^10.7.3"
