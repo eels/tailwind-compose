@@ -14,7 +14,7 @@
   "dependencies": {
     "class-variance-authority": "0.7.0",
     "tailwind-compose": "*",
-    "tailwind-variants": "0.1.13"
+    "tailwind-variants": "0.1.14"
   },
   "devDependencies": {
     "@tailwind-compose/eslint-config": "*",
