@@ -17,9 +17,10 @@
   "exports": {
     ".": {
       "browser": "./dist/tailwind-compose.module.js",
-      "umd": "./dist/tailwind-compose.umd.js",
       "import": "./dist/tailwind-compose.modern.js",
-      "require": "./dist/tailwind-compose.cjs"
+      "require": "./dist/tailwind-compose.cjs",
+      "types": "./tailwind-compose.d.ts",
+      "umd": "./dist/tailwind-compose.umd.js"
     }
   },
   "scripts": {
