@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.1](https://github.com/eels/tailwind-compose/compare/v1.1.0...v1.1.1) - 2024-01-14
+
+### Merged
+
+- fix: ensure types are exported [`#315`](https://github.com/eels/tailwind-compose/pull/315)
+- chore(deps-dev): bump lint-staged from 13.3.0 to 15.1.0 [`#308`](https://github.com/eels/tailwind-compose/pull/308)
+- build(deps): bump actions/checkout from 3 to 4 [`#298`](https://github.com/eels/tailwind-compose/pull/298)
+- chore(deps-dev): bump @types/react from 18.2.15 to 18.2.18 [`#288`](https://github.com/eels/tailwind-compose/pull/288)
+- chore(deps-dev): bump @remix-run/eslint-config from 1.19.0 to 1.19.3 [`#294`](https://github.com/eels/tailwind-compose/pull/294)
+- build(deps): bump @remix-run/react from 1.19.0 to 1.19.3 [`#296`](https://github.com/eels/tailwind-compose/pull/296)
+- chore(deps-dev): bump @next/eslint-plugin-next from 13.4.7 to 13.4.19 [`#297`](https://github.com/eels/tailwind-compose/pull/297)
+
+### Commits
+
+- docs: update v1.1.0 changelog [`bd76f0b`](https://github.com/eels/tailwind-compose/commit/bd76f0bfcad32c066783a20232dfa17d04d7b770)
+
 ## [v1.1.0](https://github.com/eels/tailwind-compose/compare/v1.0.0...v1.1.0) - 2023-08-30
 
 ### Merged
