@@ -28,7 +28,7 @@
     "sync:dependencies": "syncpack list-mismatches"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.3",
+    "@commitlint/cli": "^19.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@tailwind-compose/prettier-config": "*",
     "@tailwind-compose/typescript-config": "*",
