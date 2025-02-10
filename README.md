@@ -29,6 +29,19 @@ Of course, there are already [solutions to this out there](#alternative-packages
 
 Maybe it's the right solution for you too, or maybe it's not, and that's okay.
 
+## 🌏  Open in the Cloud 
+
+Click any of the buttons below to start a new development environment to demo or contribute to the codebase without having to install anything on your machine:
+
+[![Open in VS Code](https://img.shields.io/badge/Open%20in-VS%20Code-blue?logo=visualstudiocode)](https://vscode.dev/github/eels/tailwind-compose)
+[![Open in Glitch](https://img.shields.io/badge/Open%20in-Glitch-blue?logo=glitch)](https://glitch.com/edit/#!/import/github/eels/tailwind-compose)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/eels/tailwind-compose)
+[![Edit in Codesandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/eels/tailwind-compose)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/eels/tailwind-compose)
+[![Open in Repl.it](https://replit.com/badge/github/withastro/astro)](https://replit.com/github/eels/tailwind-compose)
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/eels/tailwind-compose)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/eels/tailwind-compose)
+
 
 ## Contents
 
